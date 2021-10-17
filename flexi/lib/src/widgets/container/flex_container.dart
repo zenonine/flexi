@@ -6,7 +6,7 @@ class FlexContainer extends StatefulWidget {
   const FlexContainer({
     Key? key,
     required this.child,
-    this.fullSize = false,
+    this.fullSize = true,
   }) : super(key: key);
 
   final Widget child;
