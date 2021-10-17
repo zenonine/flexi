@@ -1,0 +1,6 @@
+# IDE: JetBrains
+.idea/
+*.iml
+
+# FVM
+**/.fvm/flutter_sdk
