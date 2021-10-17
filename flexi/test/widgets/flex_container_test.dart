@@ -187,7 +187,10 @@ class _MockFlexContainer extends FlexContainer {
   }) : super(key: key, child: child, fullSize: fullSize);
 
   @override
-  EdgeInsets getMargins(BuildContext context) {
-    return const EdgeInsets.all(10);
-  }
+  State<FlexContainer> createState() => _MockFlexContainerState();
+}
+
+class _MockFlexContainerState extends FlexContainerState {
+  @override
+  EdgeInsets getFormatMargins(BuildContext context) => const EdgeInsets.all(10);
 }

@@ -6,17 +6,18 @@ class FlexContainer extends StatefulWidget {
   const FlexContainer({
     Key? key,
     required this.child,
-    this.fullSize = true,
+    this.fullSize = false,
   }) : super(key: key);
 
   final Widget child;
   final bool fullSize;
 
   @override
-  State<FlexContainer> createState() => _FlexContainerState();
+  State<FlexContainer> createState() => FlexContainerState();
 }
 
-class _FlexContainerState extends State<FlexContainer> {
+@visibleForTesting
+class FlexContainerState extends State<FlexContainer> {
   late FlexOptions options;
 
   @override
