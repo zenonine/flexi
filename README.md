@@ -12,10 +12,10 @@
       <img src="https://img.shields.io/pub/v/flexi.svg" alt="pub package">
     </a>
     <a href="https://github.com/zenonine/flexi/actions/workflows/verify-flexi.yml">
-      <img src="https://github.com/zenonine/navi/actions/workflows/verify-flexi.yml/badge.svg?branch=master" alt="verify flexi">
+      <img src="https://github.com/zenonine/flexi/actions/workflows/verify-flexi.yml/badge.svg?branch=master" alt="verify flexi">
     </a>
     <a href="https://codecov.io/gh/zenonine/flexi" target="_blank">
-      <img src="https://codecov.io/gh/zenonine/flexi/branch/master/graph/badge.svg?token=" alt="code coverage"/>
+      <img src="https://codecov.io/gh/zenonine/flexi/branch/master/graph/badge.svg?token=9BC8HAHKKL" alt="code coverage"/>
     </a>
   </div>
 </div>
