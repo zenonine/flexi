@@ -26,7 +26,7 @@ jobs:
       - name: Verify puslishing
         run: flutter packages publish --dry-run
 
-      - name: Setup Pub Credentials
+      - name: Authenticate pub.dev
         shell: bash
         env:
           PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
@@ -34,7 +34,7 @@ jobs:
           PUB_DEV_PUBLISH_ID_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ID_TOKEN }}
           PUB_DEV_PUBLISH_EXPIRATION: ${{ secrets.PUB_DEV_PUBLISH_EXPIRATION }}
         run: |
-          sh ./pub_dev_login.sh
+          sh ../.github/workflows/authenticate_pub_dev.sh
 
       - name: Puslish package
         run: flutter packages publish
