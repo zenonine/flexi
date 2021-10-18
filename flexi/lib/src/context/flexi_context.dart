@@ -1,4 +1,3 @@
-import 'package:flexi/src/widgets/options/inherited_options.dart';
 import 'package:flutter/widgets.dart';
 
 import '../index.dart';
