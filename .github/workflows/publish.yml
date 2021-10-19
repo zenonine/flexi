@@ -37,4 +37,4 @@ jobs:
           sh ../.github/workflows/authenticate_pub_dev.sh
 
       - name: Puslish package
-        run: flutter packages publish
+        run: flutter packages publish --force
