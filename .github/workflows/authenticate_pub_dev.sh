@@ -30,9 +30,6 @@ if [ -z "${PUB_DEV_PUBLISH_EXPIRATION}" ]; then
   exit 1
 fi
 
-echo "${PUB_CACHE}"
-echo "${PUB_CACHE}/credentials.json"
-
 # Create credentials.json file.
 cat <<EOF > "${PUB_CACHE}/credentials.json"
 {
@@ -47,5 +44,3 @@ cat <<EOF > "${PUB_CACHE}/credentials.json"
   "expiration": ${PUB_DEV_PUBLISH_EXPIRATION}
 }
 EOF
-
-ls -la "${PUB_CACHE}"
