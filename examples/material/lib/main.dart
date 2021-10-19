@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Flexi Example - Material Layout',
-      home: HomePage(),
+      home: Scaffold(body: HomePage()),
     );
   }
 }
@@ -22,6 +22,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(context.flexi.breakpoint.toString()));
+    return Center(child: Text(context.flexi.breakpoint.id.toString()));
   }
 }

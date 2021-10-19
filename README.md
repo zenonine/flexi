@@ -23,3 +23,5 @@
 ---
 
 * [Documentation](flexi)
+* [Examples](examples)
+  * [material](examples/material)
