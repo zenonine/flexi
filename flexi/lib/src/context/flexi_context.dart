@@ -13,7 +13,6 @@ class Flexi {
       context.internalFlexi.containerContext?.constraints.biggest ??
       MediaQuery.of(context).size;
 
-  // TODO: when MediaQueryData.fromWindow() is more helpful than MediaQuery.of()?
   // Size get containerSize {
   //   final biggestSize =
   //       context.internalFlexi.containerContext?.constraints.biggest;
@@ -22,6 +21,10 @@ class Flexi {
   //     return biggestSize;
   //   }
   //
+  //   // TODO: MediaQueryData.fromWindow() solves the problem when MediaQuery is not available.
+  //   // But resize window doesn't update containerSize result.
+  //   // https://api.flutter.dev/flutter/widgets/MediaQueryData/MediaQueryData.fromWindow.html
+  //   // https://api.flutter.dev/flutter/widgets/WidgetsBindingObserver/didChangeMetrics.html
   //   final mediaQueryData = MediaQuery.maybeOf(context) ??
   //       MediaQueryData.fromWindow(WidgetsBinding.instance!.window);
   //   return mediaQueryData.size;
