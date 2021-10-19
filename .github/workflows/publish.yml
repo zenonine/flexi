@@ -20,7 +20,7 @@ jobs:
       - run: flutter config --no-analytics
       - run: flutter --version
 
-      # TODO: fail if current tag and pubspec version is matched
+      # TODO: fail if current tag and pubspec version isn't matched
       # TODO: fail if publish --dry-run has warnings/errors
 
       - name: Verify puslishing

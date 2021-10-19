@@ -1,3 +1,7 @@
+## 0.1.2
+
+* Add first example
+
 ## 0.1.1
 
 * Change default `fullSize` to true for `FlexContainer`.
