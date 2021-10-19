@@ -29,7 +29,10 @@ jobs:
       - name: Authenticate pub.dev
         shell: bash
         env:
-          PUB_DEV_CREDENTIALS: ${{ secrets.PUB_DEV_CREDENTIALS }}
+          PUB_DEV_PUBLISH_ACCESS_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ACCESS_TOKEN }}
+          PUB_DEV_PUBLISH_REFRESH_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_REFRESH_TOKEN }}
+          PUB_DEV_PUBLISH_ID_TOKEN: ${{ secrets.PUB_DEV_PUBLISH_ID_TOKEN }}
+          PUB_DEV_PUBLISH_EXPIRATION: ${{ secrets.PUB_DEV_PUBLISH_EXPIRATION }}
         run: |
           sh ../.github/workflows/authenticate_pub_dev.sh
 
