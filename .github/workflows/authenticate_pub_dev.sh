@@ -5,6 +5,11 @@
 
 # Checking whether the secrets are available as environment
 # variables or not.
+if [ -z "${PUB_CACHE}" ]; then
+  echo "Missing PUB_CACHE environment variable"
+  exit 1
+fi
+
 if [ -z "${PUB_DEV_PUBLISH_ACCESS_TOKEN}" ]; then
   echo "Missing PUB_DEV_PUBLISH_ACCESS_TOKEN environment variable"
   exit 1
@@ -25,10 +30,11 @@ if [ -z "${PUB_DEV_PUBLISH_EXPIRATION}" ]; then
   exit 1
 fi
 
-mkdir ~/.pub-cache
+echo "${PUB_CACHE}"
+echo "${PUB_CACHE}/credentials.json"
 
 # Create credentials.json file.
-cat <<EOF > ~/.pub-cache/credentials.json
+cat <<EOF > "${PUB_CACHE}/credentials.json"
 {
   "accessToken": "${PUB_DEV_PUBLISH_ACCESS_TOKEN}",
   "refreshToken": "${PUB_DEV_PUBLISH_REFRESH_TOKEN}",
@@ -41,3 +47,5 @@ cat <<EOF > ~/.pub-cache/credentials.json
   "expiration": ${PUB_DEV_PUBLISH_EXPIRATION}
 }
 EOF
+
+ls -la "${PUB_CACHE}"
