@@ -27,10 +27,6 @@ fi
 
 mkdir ~/.pub-cache
 
-echo '1634479524118'
-echo 'a1634479524118b'
-echo 'PUB_DEV_CREDENTIALS 1634479524118'
-
 # Create credentials.json file.
 cat <<EOF > ~/.pub-cache/credentials.json
 {
@@ -45,7 +41,3 @@ cat <<EOF > ~/.pub-cache/credentials.json
   "expiration": ${PUB_DEV_PUBLISH_EXPIRATION}
 }
 EOF
-
-echo '1634479524118'
-echo 'a1634479524118b'
-echo 'PUB_DEV_CREDENTIALS 1634479524118'
