@@ -9,23 +9,29 @@ class Flexi {
 
   FlexOptions get options => InheritedOptions.of(context);
 
-  Size get containerSize =>
-      context.internalFlexi.containerContext?.constraints.biggest ??
-      MediaQuery.of(context).size;
+  Size get containerSize {
+    final biggestSize =
+        context.internalFlexi.containerContext?.constraints.biggest;
 
-  // TODO: when MediaQueryData.fromWindow() is more helpful than MediaQuery.of()?
-  // Size get containerSize {
-  //   final biggestSize =
-  //       context.internalFlexi.containerContext?.constraints.biggest;
-  //
-  //   if (biggestSize != null) {
-  //     return biggestSize;
-  //   }
-  //
-  //   final mediaQueryData = MediaQuery.maybeOf(context) ??
-  //       MediaQueryData.fromWindow(WidgetsBinding.instance!.window);
-  //   return mediaQueryData.size;
-  // }
+    if (biggestSize != null) {
+      return biggestSize;
+    }
+
+    // MediaQueryData.fromWindow() can solve the problem "No MediaQuery widget ancestor found.".
+    // But resize window doesn't update containerSize result.
+    // To update containerSize, we must use WidgetsBindingObserver.
+    // But WidgetsBindingObserver is not possible to use here.
+    // The only solution is to make sure [context] is inside a [WidgetsApp].
+    final mediaQueryData = MediaQuery.maybeOf(context);
+    assert(
+        mediaQueryData != null,
+        'Flexi needs access to MediaQueryData.'
+        ' WidgetsApp or its implementation, like MaterialApp or CupertinoApp, can provide the required MediaQueryData for Flexi.'
+        ' If you are using "context.flexi", make sure to use the context is below a WidgetsApp.'
+        ' If you are using "FlexContainer", make sure "FlexContainer" is below a WidgetsApp.');
+
+    return mediaQueryData!.size;
+  }
 
   Layout get layout => InheritedLayout.of(context);
 
