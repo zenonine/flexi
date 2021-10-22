@@ -66,6 +66,7 @@ class FlexOverlayStyle {
   const FlexOverlayStyle({
     this.marginColor = const Color(0x262196F3),
     this.columnColor = const Color(0x26F44336),
+    this.columnBorderColor = const Color(0x4DF44336),
     this.gutterColor = const Color(0x264CAF50),
     this.moduleColor = const Color(0x4DF44336),
     this.moduleGutterColor = const Color(0x269C27B0),
@@ -74,6 +75,7 @@ class FlexOverlayStyle {
 
   final Color marginColor;
   final Color columnColor;
+  final Color columnBorderColor;
   final Color gutterColor;
   final Color moduleColor;
   final Color moduleGutterColor;
@@ -82,6 +84,7 @@ class FlexOverlayStyle {
   FlexOverlayStyle copy({
     Color? marginColor,
     Color? columnColor,
+    Color? columnBorderColor,
     Color? gutterColor,
     Color? moduleColor,
     Color? moduleGutterColor,
@@ -90,6 +93,7 @@ class FlexOverlayStyle {
       FlexOverlayStyle(
         marginColor: marginColor ?? this.marginColor,
         columnColor: columnColor ?? this.columnColor,
+        columnBorderColor: columnBorderColor ?? this.columnBorderColor,
         gutterColor: gutterColor ?? this.gutterColor,
         moduleColor: moduleColor ?? this.moduleColor,
         moduleGutterColor: moduleGutterColor ?? this.moduleGutterColor,
@@ -103,6 +107,7 @@ class FlexOverlayStyle {
           runtimeType == other.runtimeType &&
           marginColor == other.marginColor &&
           columnColor == other.columnColor &&
+          columnBorderColor == other.columnBorderColor &&
           gutterColor == other.gutterColor &&
           moduleColor == other.moduleColor &&
           moduleGutterColor == other.moduleGutterColor &&
@@ -112,6 +117,7 @@ class FlexOverlayStyle {
   int get hashCode =>
       marginColor.hashCode ^
       columnColor.hashCode ^
+      columnBorderColor.hashCode ^
       gutterColor.hashCode ^
       moduleColor.hashCode ^
       moduleGutterColor.hashCode ^
@@ -119,6 +125,6 @@ class FlexOverlayStyle {
 
   @override
   String toString() {
-    return 'FlexOverlayStyle{marginColor: $marginColor, columnColor: $columnColor, gutterColor: $gutterColor, moduleColor: $moduleColor, moduleGutterColor: $moduleGutterColor, baselineColor: $baselineColor}';
+    return 'FlexOverlayStyle{marginColor: $marginColor, columnColor: $columnColor, columnBorderColor: $columnBorderColor, gutterColor: $gutterColor, moduleColor: $moduleColor, moduleGutterColor: $moduleGutterColor, baselineColor: $baselineColor}';
   }
 }

@@ -134,19 +134,49 @@ class _FlexColumnsOverlay extends StatelessWidget {
     return Row(
       children: List.generate(
         context.flexi.columns,
-        (index) => Row(
-          children: [
-            SizedBox(
+        (index) {
+          Widget columnBox;
+          if (context.flexi.gutter > 0) {
+            columnBox = SizedBox(
               width: context.flexi.columnWidth,
               child: Container(color: columnColor),
-            ),
-            if (index < context.flexi.columns - 1)
-              SizedBox(
-                width: context.flexi.gutter,
-                child: Container(color: gutterColor),
+            );
+          } else {
+            columnBox = SizedBox(
+              width: context.flexi.columnWidth,
+              child: Container(color: columnColor),
+            );
+          }
+
+          Widget? gutterBox;
+          if (context.flexi.gutter <= 0 && index < context.flexi.columns - 1) {
+            final columnBorderColor = options.style.columnBorderColor;
+            BorderSide leftBorder =
+                BorderSide(color: columnBorderColor, width: 0.5);
+            BorderSide rightBorder =
+                BorderSide(color: columnBorderColor, width: 0.5);
+
+            gutterBox = SizedBox(
+              width: context.flexi.gutter,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: gutterColor,
+                  border: Border(
+                    left: leftBorder,
+                    right: rightBorder,
+                  ),
+                ),
               ),
-          ],
-        ),
+            );
+          }
+
+          return Row(
+            children: [
+              columnBox,
+              if (gutterBox != null) gutterBox,
+            ],
+          );
+        },
       ),
     );
   }
@@ -230,8 +260,9 @@ class _FlexModuleOverlay extends StatelessWidget {
           final bool isFirst = index == 0;
           final bool isLast = index >= rows - 1;
 
-          BorderSide topBorder = BorderSide(color: baselineColor);
-          BorderSide bottomBorder = BorderSide(color: baselineColor);
+          BorderSide topBorder = BorderSide(color: baselineColor, width: 0.5);
+          BorderSide bottomBorder =
+              BorderSide(color: baselineColor, width: 0.5);
           if (isFirst) {
             topBorder = BorderSide.none;
           }

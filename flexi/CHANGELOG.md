@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Close #10: Overlay column dividers are not visible if gutter is zero.
+
 ## 0.1.2
 
 * Add first example
