@@ -6,6 +6,7 @@ class _ExpectedLayout {
   const _ExpectedLayout(
     this.layout, {
     required this.width,
+    this.height = double.maxFinite,
     required this.breakpoint,
     required this.format,
     required this.bodyWidth,
@@ -13,6 +14,7 @@ class _ExpectedLayout {
 
   final Layout layout;
   final double width;
+  final double height;
   final Breakpoint breakpoint;
   final LayoutFormat format;
   final double bodyWidth;
@@ -24,10 +26,7 @@ void main() {
     _ExpectedLayout(
       fluidLayout,
       width: 0,
-      breakpoint: FluidBreakpoint(
-        id: FluidBreakpointId.fluid,
-        minWidth: 0,
-      ),
+      breakpoint: FluidBreakpoint(id: FluidBreakpointId.fluid),
       format: LayoutFormat(
         columns: 1,
         gutter: 0,
@@ -41,10 +40,7 @@ void main() {
     _ExpectedLayout(
       fluidLayout,
       width: 100,
-      breakpoint: FluidBreakpoint(
-        id: FluidBreakpointId.fluid,
-        minWidth: 0,
-      ),
+      breakpoint: FluidBreakpoint(id: FluidBreakpointId.fluid),
       format: LayoutFormat(
         columns: 1,
         gutter: 0,
@@ -52,6 +48,42 @@ void main() {
         topMargin: 0,
         rightMargin: 0,
         bottomMargin: 0,
+      ),
+      bodyWidth: 100,
+    ),
+  ];
+
+  const ruleOfThirdsLayout = RuleOfThirdsLayout();
+  const expectedRuleOfThirdsLayouts = [
+    _ExpectedLayout(
+      ruleOfThirdsLayout,
+      width: 0,
+      height: 0,
+      breakpoint: RuleOfThirdsBreakpoint(id: RuleOfThirdsBreakpointId.fluid),
+      format: LayoutFormat(
+        columns: 3,
+        gutter: 0,
+        leftMargin: 0,
+        topMargin: 0,
+        rightMargin: 0,
+        bottomMargin: 0,
+        module: LayoutModule(baseline: 0, rows: 1, gutter: 0),
+      ),
+      bodyWidth: 0,
+    ),
+    _ExpectedLayout(
+      ruleOfThirdsLayout,
+      width: 100,
+      height: 90,
+      breakpoint: RuleOfThirdsBreakpoint(id: RuleOfThirdsBreakpointId.fluid),
+      format: LayoutFormat(
+        columns: 3,
+        gutter: 0,
+        leftMargin: 0,
+        topMargin: 0,
+        rightMargin: 0,
+        bottomMargin: 0,
+        module: LayoutModule(baseline: 30, rows: 1, gutter: 0),
       ),
       bodyWidth: 100,
     ),
@@ -630,6 +662,7 @@ void main() {
     FluidLayout: expectedFluidLayouts,
     MaterialLayout: expectedMaterialLayouts,
     BootstrapLayout: expectedBootstrapLayouts,
+    RuleOfThirdsLayout: expectedRuleOfThirdsLayouts,
     // TODO: CarbonLayout
   };
 
@@ -637,7 +670,8 @@ void main() {
     group('Given layout $key', () {
       for (var expectedLayout in expectedLayouts) {
         final layout = expectedLayout.layout;
-        final format = layout.format(expectedLayout.width);
+        final format =
+            layout.format(expectedLayout.width, expectedLayout.height);
         group('Given current width ${expectedLayout.width}', () {
           test('breakpoint should be ${expectedLayout.breakpoint}', () {
             expect(

@@ -5,6 +5,7 @@ export 'layouts/fluid_layout.dart';
 export 'layouts/layout.dart';
 export 'layouts/layout_format.dart';
 export 'layouts/material_layout.dart';
+export 'layouts/rule_of_thirds_layout.dart';
 export 'value/value.dart';
 export 'widgets/config/flex_config.dart';
 export 'widgets/config/flex_options.dart';

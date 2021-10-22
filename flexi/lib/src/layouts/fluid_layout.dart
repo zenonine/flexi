@@ -5,9 +5,8 @@ import '../index.dart';
 enum FluidBreakpointId { fluid }
 
 class FluidBreakpoint extends Breakpoint<FluidBreakpointId> {
-  const FluidBreakpoint(
-      {required FluidBreakpointId id, required double minWidth})
-      : super(id: id, minWidth: minWidth);
+  const FluidBreakpoint({required FluidBreakpointId id})
+      : super(id: id, minWidth: 0);
 }
 
 class FluidLayout extends Layout<FluidBreakpointId, FluidBreakpoint> {
@@ -16,12 +15,12 @@ class FluidLayout extends Layout<FluidBreakpointId, FluidBreakpoint> {
   @override
   SplayTreeSet<FluidBreakpoint> get breakpoints =>
       SplayTreeSet.from(<FluidBreakpoint>{
-        const FluidBreakpoint(id: FluidBreakpointId.fluid, minWidth: 0),
+        const FluidBreakpoint(id: FluidBreakpointId.fluid),
       });
 
   @override
   LayoutFormat format(double containerWidth,
-          [double containerHeight = double.infinity]) =>
+          [double containerHeight = double.maxFinite]) =>
       const LayoutFormat(
         columns: 1,
         gutter: 0,

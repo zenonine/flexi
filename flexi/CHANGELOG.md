@@ -1,3 +1,7 @@
+## 0.1.4
+
+* Close #9: Support layout for rule of thirds
+
 ## 0.1.3
 
 * Close #10: Overlay column dividers are not visible if gutter is zero.
