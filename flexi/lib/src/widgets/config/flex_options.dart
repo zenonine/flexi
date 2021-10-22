@@ -103,7 +103,7 @@ class FlexOverlayStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is FlexOverlayStyle &&
+      other is FlexOverlayStyle &&
           runtimeType == other.runtimeType &&
           marginColor == other.marginColor &&
           columnColor == other.columnColor &&
