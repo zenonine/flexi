@@ -3,7 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import '../index.dart';
 
 class _ExpectedLayout {
-  const _ExpectedLayout(this.layout, {
+  const _ExpectedLayout(
+    this.layout, {
     required this.width,
     this.height = double.maxFinite,
     required this.breakpoint,
