@@ -24,7 +24,7 @@ class MaterialLayout extends Layout<MaterialBreakpointId, MaterialBreakpoint> {
 
   @override
   LayoutFormat format(double containerWidth,
-      [double containerHeight = double.infinity]) {
+      [double containerHeight = double.maxFinite]) {
     final horizontalMargin = leftMargin(containerWidth);
     return LayoutFormat(
       columns: columns(containerWidth),
