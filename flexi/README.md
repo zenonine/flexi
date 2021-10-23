@@ -35,7 +35,9 @@ dependencies:
   flexi: <latest-version>
 ```
 
-# Example 1 - Material Layout
+# Example 1 - Material - Zero Configuration
+
+Without any configuration, material layout by default is applied to your whole screen.
 
 ```dart
 import 'package:flexi/flexi.dart';
@@ -51,7 +53,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Flexi Example - Material Layout',
       home: Scaffold(body: HomePage()),
     );
   }
@@ -66,3 +67,12 @@ class HomePage extends StatelessWidget {
   }
 }
 ```
+
+# Example 2 - Material - Standard Layout
+
+For each breakpoint, use recommended layout from material guideline.
+
+* xs: bottom app bar + hidden drawer
+* sm: left rail
+* md: left rail + right column
+* lg: full visible drawer + right column
