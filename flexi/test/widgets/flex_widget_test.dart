@@ -7,7 +7,7 @@ import '../index.dart';
 void main() {
   group('Given container width 0', () {
     testWidgets('Flex value should be "xs/sm"', (WidgetTester tester) async {
-      setPhysicalSize(tester, const Size.square(0));
+      setPhysicalSize(tester, Size.zero);
       await tester.pumpWidget(const _TestApp());
       expect(find.text('xs/sm'), findsOneWidget);
     });

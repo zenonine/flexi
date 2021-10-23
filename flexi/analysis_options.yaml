@@ -1,9 +1,6 @@
-include: package:flutter_lints/flutter.yaml
+include: package:zenonine_lints/analysis_options.yaml
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
-
-analyzer:
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+linter:
+  rules:
+    # TODO(xuan): enable this rule before release 1.x
+    public_member_api_docs: false

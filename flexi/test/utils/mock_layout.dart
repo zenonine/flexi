@@ -21,8 +21,10 @@ class TestLayout extends Layout<TestBreakpointId, TestBreakpoint> {
       });
 
   @override
-  LayoutFormat format(double containerWidth,
-          [double containerHeight = double.maxFinite]) =>
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) =>
       const LayoutFormat(
         columns: 1,
         gutter: 0,

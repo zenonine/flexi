@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
+@immutable
 class LayoutFormat {
   const LayoutFormat({
     required this.columns,
@@ -11,18 +12,18 @@ class LayoutFormat {
     required this.rightMargin,
     required this.bottomMargin,
     this.module = const LayoutModule(baseline: 0, rows: 1, gutter: 0),
-  })  : assert(columns > 0),
-        assert(columns < double.infinity),
-        assert(gutter >= 0),
-        assert(gutter < double.infinity),
-        assert(leftMargin >= 0),
-        assert(leftMargin < double.infinity),
-        assert(topMargin >= 0),
-        assert(topMargin < double.infinity),
-        assert(rightMargin >= 0),
-        assert(rightMargin < double.infinity),
-        assert(bottomMargin >= 0),
-        assert(bottomMargin < double.infinity);
+  })  : assert(columns > 0, 'Columns should be positive.'),
+        assert(columns < double.infinity, 'Columns should be finite.'),
+        assert(gutter >= 0, 'Gutter should not be negative.'),
+        assert(gutter < double.infinity, 'Gutter should be finite.'),
+        assert(leftMargin >= 0, 'Margin should not be negative.'),
+        assert(leftMargin < double.infinity, 'Margin should be finite.'),
+        assert(topMargin >= 0, 'Margin should not be negative.'),
+        assert(topMargin < double.infinity, 'Margin should be finite.'),
+        assert(rightMargin >= 0, 'Margin should not be negative.'),
+        assert(rightMargin < double.infinity, 'Margin should be finite.'),
+        assert(bottomMargin >= 0, 'Margin should not be negative.'),
+        assert(bottomMargin < double.infinity, 'Margin should be finite.');
 
   final int columns;
   final double gutter;
@@ -33,11 +34,11 @@ class LayoutFormat {
   final LayoutModule module;
 
   EdgeInsets get margins => EdgeInsets.fromLTRB(
-        leftMargin,
-        topMargin,
-        rightMargin,
-        bottomMargin,
-      );
+    leftMargin,
+    topMargin,
+    rightMargin,
+    bottomMargin,
+  );
 
   LayoutFormat copy({
     int? columns,
@@ -93,9 +94,11 @@ class LayoutFormat {
 
     // Assume [x] is number of modules current body height can fully contain.
     // Then [y = x + 1] is the minimum number of modules will produce overflow.
-    // Assume [b] is current body height, [m] is module height and [g] is module gutter.
+    // Assume [b] is current body height, [m] is module height and [g]
+    // is module gutter.
     // This statement should be true: mx + g(x - 1) < b < my + g(y - 1).
-    // Assume [a] is a number that make the statement truthy: [b = ma + g(a -1)] => [a = (b + g) / (m + g)].
+    // Assume [a] is a number that make the statement truthy:
+    // [b = ma + g(a -1)] => [a = (b + g) / (m + g)].
     // Then this statement should be true [x < a < y].
     // It means, [x = a.toInt()].
     return (bodyHeight + module.gutter) ~/ (module.height + module.gutter);
@@ -106,7 +109,7 @@ class LayoutFormat {
 
     final bodyWidth = this.bodyWidth(containerWidth);
     if (bodyWidth > 0) {
-      final double totalGutterWidth = (columns - 1) * gutter;
+      final totalGutterWidth = (columns - 1) * gutter;
       return (bodyWidth - totalGutterWidth) / columns;
     }
 
@@ -115,8 +118,10 @@ class LayoutFormat {
 
   double regionWidth(int columns, double containerWidth) {
     assert(columns >= 0, 'Columns ($columns) should not be a negative number.');
-    assert(columns < double.infinity,
-        'Columns ($columns) should be a finite number.');
+    assert(
+      columns < double.infinity,
+      'Columns ($columns) should be a finite number.',
+    );
     _assertContainerWidth(containerWidth);
 
     return columns > 0
@@ -126,8 +131,10 @@ class LayoutFormat {
 
   double regionHeight([int modules = 1]) {
     assert(modules >= 0, 'Modules ($modules) should not be a negative number.');
-    assert(modules < double.infinity,
-        'Modules ($modules) should be a finite number.');
+    assert(
+      modules < double.infinity,
+      'Modules ($modules) should be a finite number.',
+    );
 
     return modules > 0
         ? modules * module.height + (modules - 1) * module.gutter
@@ -135,31 +142,39 @@ class LayoutFormat {
   }
 
   void _assertContainerWidth(double containerWidth) {
-    assert(containerWidth >= 0,
-        'Container width ($containerWidth) should not be a negative number.');
-    assert(containerWidth < double.infinity,
-        'Container width ($containerWidth) should be a finite number.');
+    assert(
+      containerWidth >= 0,
+      'Container width ($containerWidth) should not be a negative number.',
+    );
+    assert(
+      containerWidth < double.infinity,
+      'Container width ($containerWidth) should be a finite number.',
+    );
   }
 
   void _assertContainerHeight(double containerHeight) {
-    assert(containerHeight >= 0,
-        'Container height ($containerHeight) should not be a negative number.');
-    assert(containerHeight < double.infinity,
-        'Container height ($containerHeight) should be a finite number.');
+    assert(
+      containerHeight >= 0,
+      'Container height ($containerHeight) should not be a negative number.',
+    );
+    assert(
+      containerHeight < double.infinity,
+      'Container height ($containerHeight) should be a finite number.',
+    );
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LayoutFormat &&
-          runtimeType == other.runtimeType &&
-          columns == other.columns &&
-          gutter == other.gutter &&
-          leftMargin == other.leftMargin &&
-          rightMargin == other.rightMargin &&
-          topMargin == other.topMargin &&
-          bottomMargin == other.bottomMargin &&
-          module == other.module;
+          other is LayoutFormat &&
+              runtimeType == other.runtimeType &&
+              columns == other.columns &&
+              gutter == other.gutter &&
+              leftMargin == other.leftMargin &&
+              rightMargin == other.rightMargin &&
+              topMargin == other.topMargin &&
+              bottomMargin == other.bottomMargin &&
+              module == other.module;
 
   @override
   int get hashCode =>
@@ -173,21 +188,30 @@ class LayoutFormat {
 
   @override
   String toString() {
-    return 'LayoutFormat{columns: $columns, gutter: $gutter, leftMargin: $leftMargin, rightMargin: $rightMargin, topMargin: $topMargin, bottomMargin: $bottomMargin, module: $module}';
+    return 'LayoutFormat{'
+        'columns: $columns,'
+        ' gutter: $gutter,'
+        ' leftMargin: $leftMargin,'
+        ' rightMargin: $rightMargin,'
+        ' topMargin: $topMargin,'
+        ' bottomMargin: $bottomMargin,'
+        ' module: $module'
+        '}';
   }
 }
 
+@immutable
 class LayoutModule {
   const LayoutModule({
     required this.baseline,
     required this.rows,
     required this.gutter,
-  })  : assert(baseline >= 0),
-        assert(baseline < double.infinity),
-        assert(rows > 0),
-        assert(rows < double.infinity),
-        assert(gutter >= 0),
-        assert(gutter < double.infinity);
+  })  : assert(baseline >= 0, 'Baseline should not be negative.'),
+        assert(baseline < double.infinity, 'Baseline should be finite.'),
+        assert(rows > 0, 'Rows should be positive.'),
+        assert(rows < double.infinity, 'Rows should be finite.'),
+        assert(gutter >= 0, 'Gutter should not be negative.'),
+        assert(gutter < double.infinity, 'Gutter should be finite.');
 
   final double baseline;
   final int rows;
@@ -198,11 +222,11 @@ class LayoutModule {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LayoutModule &&
-          runtimeType == other.runtimeType &&
-          baseline == other.baseline &&
-          rows == other.rows &&
-          gutter == other.gutter;
+          other is LayoutModule &&
+              runtimeType == other.runtimeType &&
+              baseline == other.baseline &&
+              rows == other.rows &&
+              gutter == other.gutter;
 
   @override
   int get hashCode => baseline.hashCode ^ rows.hashCode ^ gutter.hashCode;

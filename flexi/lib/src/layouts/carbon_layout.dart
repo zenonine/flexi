@@ -5,9 +5,10 @@ import '../index.dart';
 enum CarbonBreakpointId { sm, md, lg, xl, max }
 
 class CarbonBreakpoint extends Breakpoint<CarbonBreakpointId> {
-  const CarbonBreakpoint(
-      {required CarbonBreakpointId id, required double minWidth})
-      : super(id: id, minWidth: minWidth);
+  const CarbonBreakpoint({
+    required CarbonBreakpointId id,
+    required double minWidth,
+  }) : super(id: id, minWidth: minWidth);
 }
 
 /// See https://www.carbondesignsystem.com/guidelines/2x-grid/implementation
@@ -25,8 +26,10 @@ class CarbonLayout extends Layout<CarbonBreakpointId, CarbonBreakpoint> {
       });
 
   @override
-  LayoutFormat format(double containerWidth,
-      [double containerHeight = double.maxFinite]) {
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) {
     final horizontalMargin = leftMargin(containerWidth);
     return LayoutFormat(
       columns: columns(containerWidth),
@@ -71,8 +74,10 @@ class NarrowCarbonLayout extends CarbonLayout {
   const NarrowCarbonLayout();
 
   @override
-  LayoutFormat format(double containerWidth,
-          [double containerHeight = double.maxFinite]) =>
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) =>
       super.format(containerWidth, containerHeight).copy(gutter: 16);
 }
 
@@ -80,7 +85,9 @@ class CondensedCarbonLayout extends CarbonLayout {
   const CondensedCarbonLayout();
 
   @override
-  LayoutFormat format(double containerWidth,
-          [double containerHeight = double.maxFinite]) =>
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) =>
       super.format(containerWidth, containerHeight).copy(gutter: 1);
 }

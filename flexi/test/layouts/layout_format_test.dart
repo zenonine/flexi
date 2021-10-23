@@ -28,7 +28,7 @@ void main() {
         41: 1,
         50: 10,
       };
-      for (var expectedEntry in expectedBodyWidths.entries) {
+      for (final expectedEntry in expectedBodyWidths.entries) {
         final containerWidth = expectedEntry.key;
         final expectedBodyWidth = expectedEntry.value;
         group('Given container width $containerWidth', () {
@@ -50,7 +50,7 @@ void main() {
         61: 1,
         70: 10,
       };
-      for (var expectEntry in expectedBodyHeights.entries) {
+      for (final expectEntry in expectedBodyHeights.entries) {
         final containerHeight = expectEntry.key;
         final expectedBodyHeight = expectEntry.value;
         group('Given container height $containerHeight', () {
@@ -72,7 +72,7 @@ void main() {
         71: 0.25,
         78: 2,
       };
-      for (var expectEntry in expectedColumnWidths.entries) {
+      for (final expectEntry in expectedColumnWidths.entries) {
         final containerWidth = expectEntry.key;
         final expectedColumnWidth = expectEntry.value;
         group('Given container width $containerWidth', () {
@@ -96,7 +96,7 @@ void main() {
           2: 1 * format.module.gutter + 2 * expectedColumnWidth,
           3: 2 * format.module.gutter + 3 * expectedColumnWidth,
         };
-        for (var expectedEntry in expectedRegionWidths.entries) {
+        for (final expectedEntry in expectedRegionWidths.entries) {
           final columns = expectedEntry.key;
           final expectedRegionWidth = expectedEntry.value;
           test(
@@ -117,7 +117,7 @@ void main() {
         1: 40,
         2: 90,
       };
-      for (var expectEntry in expectedRegionHeights.entries) {
+      for (final expectEntry in expectedRegionHeights.entries) {
         final modules = expectEntry.key;
         final expectedRegionHeight = expectEntry.value;
         test(
@@ -133,14 +133,14 @@ void main() {
   });
 
   group('LayoutFormat copy', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 
   group('LayoutFormat equality', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 
   group('LayoutModule equality', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 }

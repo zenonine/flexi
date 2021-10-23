@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+@immutable
 class FlexOptions {
   const FlexOptions({
     this.showOverlay = false,
@@ -38,14 +39,14 @@ class FlexOptions {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FlexOptions &&
-          runtimeType == other.runtimeType &&
-          showOverlay == other.showOverlay &&
-          showMargins == other.showMargins &&
-          showColumns == other.showColumns &&
-          showModules == other.showModules &&
-          showBaselines == other.showBaselines &&
-          style == other.style;
+          other is FlexOptions &&
+              runtimeType == other.runtimeType &&
+              showOverlay == other.showOverlay &&
+              showMargins == other.showMargins &&
+              showColumns == other.showColumns &&
+              showModules == other.showModules &&
+              showBaselines == other.showBaselines &&
+              style == other.style;
 
   @override
   int get hashCode =>
@@ -58,10 +59,18 @@ class FlexOptions {
 
   @override
   String toString() {
-    return 'FlexOptions{showOverlay: $showOverlay, showMargins: $showMargins, showColumns: $showColumns, showModules: $showModules, showBaselines: $showBaselines, style: $style}';
+    return 'FlexOptions{'
+        'showOverlay: $showOverlay,'
+        ' showMargins: $showMargins,'
+        ' showColumns: $showColumns,'
+        ' showModules: $showModules,'
+        ' showBaselines: $showBaselines,'
+        ' style: $style'
+        '}';
   }
 }
 
+@immutable
 class FlexOverlayStyle {
   const FlexOverlayStyle({
     this.marginColor = const Color(0x262196F3),
@@ -103,15 +112,15 @@ class FlexOverlayStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FlexOverlayStyle &&
-          runtimeType == other.runtimeType &&
-          marginColor == other.marginColor &&
-          columnColor == other.columnColor &&
-          columnBorderColor == other.columnBorderColor &&
-          gutterColor == other.gutterColor &&
-          moduleColor == other.moduleColor &&
-          moduleGutterColor == other.moduleGutterColor &&
-          baselineColor == other.baselineColor;
+          other is FlexOverlayStyle &&
+              runtimeType == other.runtimeType &&
+              marginColor == other.marginColor &&
+              columnColor == other.columnColor &&
+              columnBorderColor == other.columnBorderColor &&
+              gutterColor == other.gutterColor &&
+              moduleColor == other.moduleColor &&
+              moduleGutterColor == other.moduleGutterColor &&
+              baselineColor == other.baselineColor;
 
   @override
   int get hashCode =>
@@ -125,6 +134,14 @@ class FlexOverlayStyle {
 
   @override
   String toString() {
-    return 'FlexOverlayStyle{marginColor: $marginColor, columnColor: $columnColor, columnBorderColor: $columnBorderColor, gutterColor: $gutterColor, moduleColor: $moduleColor, moduleGutterColor: $moduleGutterColor, baselineColor: $baselineColor}';
+    return 'FlexOverlayStyle{'
+        'marginColor: $marginColor,'
+        ' columnColor: $columnColor,'
+        ' columnBorderColor: $columnBorderColor,'
+        ' gutterColor: $gutterColor,'
+        ' moduleColor: $moduleColor,'
+        ' moduleGutterColor: $moduleGutterColor,'
+        ' baselineColor: $baselineColor'
+        '}';
   }
 }

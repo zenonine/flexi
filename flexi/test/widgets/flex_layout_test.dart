@@ -5,23 +5,25 @@ import '../index.dart';
 
 void main() {
   group(
-      'Given outer FlexLayout uses BootstrapLayout and inner FlexLayout uses FluidLayout',
-      () {
+      'Given outer FlexLayout uses BootstrapLayout'
+      ' and inner FlexLayout uses FluidLayout', () {
     testWidgets(
       'Default MaterialLayout should be used above the outer FlexLayout',
       (WidgetTester tester) async {
         Layout? layout;
         const expectedLayout = MaterialLayout();
 
-        await tester.pumpWidget(_TestFlexLayout(
-          onBuild: ({
-            required topContext,
-            required middleContext,
-            required bottomContext,
-          }) {
-            layout = topContext.flexi.layout;
-          },
-        ));
+        await tester.pumpWidget(
+          _TestFlexLayout(
+            onBuild: ({
+              required topContext,
+              required middleContext,
+              required bottomContext,
+            }) {
+              layout = topContext.flexi.layout;
+            },
+          ),
+        );
 
         expect(layout, expectedLayout);
       },
@@ -33,15 +35,17 @@ void main() {
         Layout? layout;
         const expectedLayout = BootstrapLayout();
 
-        await tester.pumpWidget(_TestFlexLayout(
-          onBuild: ({
-            required topContext,
-            required middleContext,
-            required bottomContext,
-          }) {
-            layout = middleContext.flexi.layout;
-          },
-        ));
+        await tester.pumpWidget(
+          _TestFlexLayout(
+            onBuild: ({
+              required topContext,
+              required middleContext,
+              required bottomContext,
+            }) {
+              layout = middleContext.flexi.layout;
+            },
+          ),
+        );
 
         expect(layout, expectedLayout);
       },
@@ -53,15 +57,17 @@ void main() {
         Layout? layout;
         const expectedLayout = FluidLayout();
 
-        await tester.pumpWidget(_TestFlexLayout(
-          onBuild: ({
-            required topContext,
-            required middleContext,
-            required bottomContext,
-          }) {
-            layout = bottomContext.flexi.layout;
-          },
-        ));
+        await tester.pumpWidget(
+          _TestFlexLayout(
+            onBuild: ({
+              required topContext,
+              required middleContext,
+              required bottomContext,
+            }) {
+              layout = bottomContext.flexi.layout;
+            },
+          ),
+        );
 
         expect(layout, expectedLayout);
       },
@@ -84,18 +90,23 @@ class _TestFlexLayout extends StatelessWidget {
   Widget build(BuildContext topContext) {
     return FlexLayout(
       layout: const BootstrapLayout(),
-      child: Builder(builder: (middleContext) {
-        return FlexLayout(
+      child: Builder(
+        builder: (middleContext) {
+          return FlexLayout(
             layout: const FluidLayout(),
-            child: Builder(builder: (bottomContext) {
-              onBuild(
-                topContext: topContext,
-                middleContext: middleContext,
-                bottomContext: bottomContext,
-              );
-              return Container();
-            }));
-      }),
+            child: Builder(
+              builder: (bottomContext) {
+                onBuild(
+                  topContext: topContext,
+                  middleContext: middleContext,
+                  bottomContext: bottomContext,
+                );
+                return Container();
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

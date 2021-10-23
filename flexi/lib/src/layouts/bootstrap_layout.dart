@@ -5,9 +5,10 @@ import '../index.dart';
 enum BootstrapBreakpointId { xs, sm, md, lg, xl, xxl }
 
 class BootstrapBreakpoint extends Breakpoint<BootstrapBreakpointId> {
-  const BootstrapBreakpoint(
-      {required BootstrapBreakpointId id, required double minWidth})
-      : super(id: id, minWidth: minWidth);
+  const BootstrapBreakpoint({
+    required BootstrapBreakpointId id,
+    required double minWidth,
+  }) : super(id: id, minWidth: minWidth);
 }
 
 class BootstrapLayout
@@ -23,12 +24,16 @@ class BootstrapLayout
         const BootstrapBreakpoint(id: BootstrapBreakpointId.lg, minWidth: 992),
         const BootstrapBreakpoint(id: BootstrapBreakpointId.xl, minWidth: 1200),
         const BootstrapBreakpoint(
-            id: BootstrapBreakpointId.xxl, minWidth: 1400),
+          id: BootstrapBreakpointId.xxl,
+          minWidth: 1400,
+        ),
       });
 
   @override
-  LayoutFormat format(double containerWidth,
-      [double containerHeight = double.maxFinite]) {
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) {
     // Apply the same margin for both sides.
     final horizontalMargin = leftMargin(containerWidth);
     return LayoutFormat(

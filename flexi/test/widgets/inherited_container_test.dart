@@ -7,12 +7,16 @@ void main() {
   group('Given there are no InheritedContainer', () {
     testWidgets('ContainerContext should be null', (tester) async {
       BuildContext? context;
-      await tester.pumpWidget(_TestApp(
-        child: Builder(builder: (ctx) {
-          context = ctx;
-          return Container();
-        }),
-      ));
+      await tester.pumpWidget(
+        _TestApp(
+          child: Builder(
+            builder: (ctx) {
+              context = ctx;
+              return Container();
+            },
+          ),
+        ),
+      );
 
       expect(InheritedContainer.of(context!), null);
     });
@@ -22,29 +26,35 @@ void main() {
     testWidgets('ContainerContext should not be null', (tester) async {
       BuildContext? context;
       ContainerContext? expectedContainerContext;
-      await tester.pumpWidget(_TestApp(
-        child: LayoutBuilder(builder: (ctx, constraints) {
-          expectedContainerContext = ContainerContext(
-            context: ctx,
-            constraints: constraints,
-          );
+      await tester.pumpWidget(
+        _TestApp(
+          child: LayoutBuilder(
+            builder: (ctx, constraints) {
+              expectedContainerContext = ContainerContext(
+                context: ctx,
+                constraints: constraints,
+              );
 
-          return InheritedContainer(
-            containerContext: expectedContainerContext!,
-            child: Builder(builder: (ctx) {
-              context = ctx;
-              return Container();
-            }),
-          );
-        }),
-      ));
+              return InheritedContainer(
+                containerContext: expectedContainerContext!,
+                child: Builder(
+                  builder: (ctx) {
+                    context = ctx;
+                    return Container();
+                  },
+                ),
+              );
+            },
+          ),
+        ),
+      );
 
       expect(InheritedContainer.of(context!), expectedContainerContext);
     });
   });
 
   group('updateShouldNotify', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 }
 

@@ -18,31 +18,33 @@ class App extends StatelessWidget {
       showOverlay: true,
       child: MaterialApp(
         title: 'Flexi Example 02 - Material - Advanced',
-        home: Builder(builder: (context) {
-          // final breakpointId = context.flexi.breakpoint.id;
-          return FlexWidget(
-            startWidget: (_) => FlexContainer(
-              child: Scaffold(
-                drawer: const Drawer(child: Text('Drawer')),
-                appBar: AppBar(
-                  title: const Text('AppBar'),
-                ),
-                body: const HomePage(),
-              ),
-            ),
-            flexWidgets: {
-              MaterialBreakpointId.sm: (_) => Scaffold(
-                    body: Row(
-                      children: const [
-                        AppRail(),
-                        VerticalDivider(thickness: 1, width: 1),
-                        Expanded(child: FlexContainer(child: HomePage())),
-                      ],
-                    ),
+        home: Builder(
+          builder: (context) {
+            // final breakpointId = context.flexi.breakpoint.id;
+            return FlexWidget(
+              startWidget: (_) => FlexContainer(
+                child: Scaffold(
+                  drawer: const Drawer(child: Text('Drawer')),
+                  appBar: AppBar(
+                    title: const Text('AppBar'),
                   ),
-            },
-          );
-        }),
+                  body: const HomePage(),
+                ),
+              ),
+              flexWidgets: {
+                MaterialBreakpointId.sm: (_) => Scaffold(
+                      body: Row(
+                        children: const [
+                          AppRail(),
+                          VerticalDivider(thickness: 1, width: 1),
+                          Expanded(child: FlexContainer(child: HomePage())),
+                        ],
+                      ),
+                    ),
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -69,7 +71,9 @@ class _AppRailState extends State<AppRail> {
       destinations: const [
         NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
         NavigationRailDestination(
-            icon: Icon(Icons.favorite), label: Text('Favorite')),
+          icon: Icon(Icons.favorite),
+          label: Text('Favorite'),
+        ),
       ],
     );
   }

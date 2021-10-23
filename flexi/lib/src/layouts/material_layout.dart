@@ -5,9 +5,10 @@ import '../index.dart';
 enum MaterialBreakpointId { xs, sm, md, lg }
 
 class MaterialBreakpoint extends Breakpoint<MaterialBreakpointId> {
-  const MaterialBreakpoint(
-      {required MaterialBreakpointId id, required double minWidth})
-      : super(id: id, minWidth: minWidth);
+  const MaterialBreakpoint({
+    required MaterialBreakpointId id,
+    required double minWidth,
+  }) : super(id: id, minWidth: minWidth);
 }
 
 class MaterialLayout extends Layout<MaterialBreakpointId, MaterialBreakpoint> {
@@ -23,8 +24,10 @@ class MaterialLayout extends Layout<MaterialBreakpointId, MaterialBreakpoint> {
       });
 
   @override
-  LayoutFormat format(double containerWidth,
-      [double containerHeight = double.maxFinite]) {
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) {
     final horizontalMargin = leftMargin(containerWidth);
     return LayoutFormat(
       columns: columns(containerWidth),

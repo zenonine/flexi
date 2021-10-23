@@ -19,8 +19,10 @@ class FluidLayout extends Layout<FluidBreakpointId, FluidBreakpoint> {
       });
 
   @override
-  LayoutFormat format(double containerWidth,
-          [double containerHeight = double.maxFinite]) =>
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) =>
       const LayoutFormat(
         columns: 1,
         gutter: 0,

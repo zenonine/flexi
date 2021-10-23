@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+@immutable
 class ContainerContext {
   const ContainerContext({
     required this.context,
@@ -12,10 +13,10 @@ class ContainerContext {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ContainerContext &&
-          runtimeType == other.runtimeType &&
-          context == other.context &&
-          constraints == other.constraints;
+          other is ContainerContext &&
+              runtimeType == other.runtimeType &&
+              context == other.context &&
+              constraints == other.constraints;
 
   @override
   int get hashCode => context.hashCode ^ constraints.hashCode;
