@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+@immutable
 class FlexOptions {
   const FlexOptions({
     this.showOverlay = false,
@@ -58,10 +59,18 @@ class FlexOptions {
 
   @override
   String toString() {
-    return 'FlexOptions{showOverlay: $showOverlay, showMargins: $showMargins, showColumns: $showColumns, showModules: $showModules, showBaselines: $showBaselines, style: $style}';
+    return 'FlexOptions{'
+        'showOverlay: $showOverlay,'
+        ' showMargins: $showMargins,'
+        ' showColumns: $showColumns,'
+        ' showModules: $showModules,'
+        ' showBaselines: $showBaselines,'
+        ' style: $style'
+        '}';
   }
 }
 
+@immutable
 class FlexOverlayStyle {
   const FlexOverlayStyle({
     this.marginColor = const Color(0x262196F3),
@@ -125,6 +134,14 @@ class FlexOverlayStyle {
 
   @override
   String toString() {
-    return 'FlexOverlayStyle{marginColor: $marginColor, columnColor: $columnColor, columnBorderColor: $columnBorderColor, gutterColor: $gutterColor, moduleColor: $moduleColor, moduleGutterColor: $moduleGutterColor, baselineColor: $baselineColor}';
+    return 'FlexOverlayStyle{'
+        'marginColor: $marginColor,'
+        ' columnColor: $columnColor,'
+        ' columnBorderColor: $columnBorderColor,'
+        ' gutterColor: $gutterColor,'
+        ' moduleColor: $moduleColor,'
+        ' moduleGutterColor: $moduleGutterColor,'
+        ' baselineColor: $baselineColor'
+        '}';
   }
 }

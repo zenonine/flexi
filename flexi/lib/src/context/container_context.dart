@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+@immutable
 class ContainerContext {
   const ContainerContext({
     required this.context,

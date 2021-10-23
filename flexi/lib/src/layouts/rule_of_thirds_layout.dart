@@ -20,8 +20,10 @@ class RuleOfThirdsLayout
       });
 
   @override
-  LayoutFormat format(double containerWidth,
-          [double containerHeight = double.maxFinite]) =>
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) =>
       LayoutFormat(
         columns: 3,
         gutter: 0,

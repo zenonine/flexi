@@ -37,9 +37,15 @@ class BreakpointFlexValue<BreakpointId extends Enum, V>
   final Map<BreakpointId, V>? flexValues;
 
   /// 1. If [flexValues] is null or empty, returns [startValue].
-  /// 2. If current breakpoint is smaller than the smallest breakpoint of the layout, returns [startValue].
-  /// 3. If current breakpoint is smaller than the smallest breakpoint in [flexValues], returns [startValue].
-  /// 4. Otherwise, returns the value of the nearest breakpoint in [flexValues], which is smaller than current breakpoint.
+  ///
+  /// 2. If current breakpoint is smaller than the smallest breakpoint
+  /// of the layout, returns [startValue].
+  ///
+  /// 3. If current breakpoint is smaller than the smallest breakpoint
+  /// in [flexValues], returns [startValue].
+  ///
+  /// 4. Otherwise, returns the value of the nearest breakpoint in [flexValues],
+  /// which is smaller than current breakpoint.
   @override
   V get(BuildContext context) {
     if (flexValues == null) {

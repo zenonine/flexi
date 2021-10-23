@@ -156,7 +156,7 @@ void main() {
     ),
   ];
 
-  for (var expectedFlexValue in expectedFlexValues) {
+  for (final expectedFlexValue in expectedFlexValues) {
     final flexValue = expectedFlexValue.flexValue;
     final containerWidth = expectedFlexValue.containerWidth;
     final expectedText = expectedFlexValue.expectedText;

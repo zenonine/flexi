@@ -6,22 +6,24 @@ import '../index.dart';
 
 void main() {
   group(
-      'Given a squared full size FlexContainer with size 200 and a nested squared full size FlexContainer with size 100',
-      () {
+      'Given a squared full size FlexContainer with size 200'
+      ' and a nested squared full size FlexContainer with size 100', () {
     testWidgets(
       'The most outer ContainerContext should be null',
       (tester) async {
         ContainerContext? containerContext;
 
-        await tester.pumpWidget(_TestContainerContext(
-          onBuild: ({
-            required topContext,
-            required middleContext,
-            required bottomContext,
-          }) {
-            containerContext = topContext.internalFlexi.containerContext;
-          },
-        ));
+        await tester.pumpWidget(
+          _TestContainerContext(
+            onBuild: ({
+              required topContext,
+              required middleContext,
+              required bottomContext,
+            }) {
+              containerContext = topContext.internalFlexi.containerContext;
+            },
+          ),
+        );
 
         expect(containerContext, null);
       },
@@ -33,16 +35,18 @@ void main() {
         Size? biggestSize;
         const expectedSize = Size.square(200);
 
-        await tester.pumpWidget(_TestContainerContext(
-          onBuild: ({
-            required topContext,
-            required middleContext,
-            required bottomContext,
-          }) {
-            biggestSize = middleContext
-                .internalFlexi.containerContext?.constraints.biggest;
-          },
-        ));
+        await tester.pumpWidget(
+          _TestContainerContext(
+            onBuild: ({
+              required topContext,
+              required middleContext,
+              required bottomContext,
+            }) {
+              biggestSize = middleContext
+                  .internalFlexi.containerContext?.constraints.biggest;
+            },
+          ),
+        );
 
         expect(biggestSize, expectedSize);
       },
@@ -54,16 +58,18 @@ void main() {
         Size? biggestSize;
         const expectedSize = Size.square(100);
 
-        await tester.pumpWidget(_TestContainerContext(
-          onBuild: ({
-            required topContext,
-            required middleContext,
-            required bottomContext,
-          }) {
-            biggestSize = bottomContext
-                .internalFlexi.containerContext?.constraints.biggest;
-          },
-        ));
+        await tester.pumpWidget(
+          _TestContainerContext(
+            onBuild: ({
+              required topContext,
+              required middleContext,
+              required bottomContext,
+            }) {
+              biggestSize = bottomContext
+                  .internalFlexi.containerContext?.constraints.biggest;
+            },
+          ),
+        );
 
         expect(biggestSize, expectedSize);
       },
@@ -77,20 +83,24 @@ void main() {
           const expectedSize = Size.square(80);
           BuildContext? context;
 
-          await tester.pumpWidget(_TestMargins(
-            child: UnconstrainedBox(
-              child: SizedBox.square(
-                dimension: 100,
-                child: _MockFlexContainer(
-                  fullSize: false,
-                  child: Builder(builder: (ctx) {
-                    context = ctx;
-                    return Container();
-                  }),
+          await tester.pumpWidget(
+            _TestMargins(
+              child: UnconstrainedBox(
+                child: SizedBox.square(
+                  dimension: 100,
+                  child: _MockFlexContainer(
+                    fullSize: false,
+                    child: Builder(
+                      builder: (ctx) {
+                        context = ctx;
+                        return Container();
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
-          ));
+          );
 
           expect(context!.size, expectedSize);
         });
@@ -101,20 +111,23 @@ void main() {
           const expectedSize = Size.square(100);
           BuildContext? context;
 
-          await tester.pumpWidget(_TestMargins(
-            child: UnconstrainedBox(
-              child: SizedBox.square(
-                dimension: 100,
-                child: _MockFlexContainer(
-                  fullSize: true,
-                  child: Builder(builder: (ctx) {
-                    context = ctx;
-                    return Container();
-                  }),
+          await tester.pumpWidget(
+            _TestMargins(
+              child: UnconstrainedBox(
+                child: SizedBox.square(
+                  dimension: 100,
+                  child: _MockFlexContainer(
+                    child: Builder(
+                      builder: (ctx) {
+                        context = ctx;
+                        return Container();
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
-          ));
+          );
 
           expect(context!.size, expectedSize);
         });
@@ -142,13 +155,11 @@ class _TestContainerContext extends StatelessWidget {
         child: SizedBox.square(
           dimension: 200,
           child: FlexContainer(
-            fullSize: true,
             child: Builder(
               builder: (middleContext) => UnconstrainedBox(
                 child: SizedBox.square(
                   dimension: 100,
                   child: FlexContainer(
-                    fullSize: true,
                     child: Builder(
                       builder: (bottomContext) {
                         onBuild(
@@ -183,7 +194,7 @@ class _MockFlexContainer extends FlexContainer {
   const _MockFlexContainer({
     Key? key,
     required Widget child,
-    bool fullSize = false,
+    bool fullSize = true,
   }) : super(key: key, child: child, fullSize: fullSize);
 
   @override

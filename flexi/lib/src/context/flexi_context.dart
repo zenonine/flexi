@@ -1,6 +1,5 @@
+import 'package:flexi/src/index.dart';
 import 'package:flutter/widgets.dart';
-
-import '../index.dart';
 
 class Flexi {
   const Flexi(this.context);
@@ -17,18 +16,23 @@ class Flexi {
       return biggestSize;
     }
 
-    // MediaQueryData.fromWindow() can solve the problem "No MediaQuery widget ancestor found.".
+    // MediaQueryData.fromWindow() can solve the problem "No MediaQuery widget
+    // ancestor found.".
     // But resize window doesn't update containerSize result.
     // To update containerSize, we must use WidgetsBindingObserver.
     // But WidgetsBindingObserver is not possible to use here.
     // The only solution is to make sure [context] is inside a [WidgetsApp].
     final mediaQueryData = MediaQuery.maybeOf(context);
     assert(
-        mediaQueryData != null,
-        'Flexi needs access to MediaQueryData.'
-        ' WidgetsApp or its implementation, like MaterialApp or CupertinoApp, can provide the required MediaQueryData for Flexi.'
-        ' If you are using "context.flexi", make sure to use the context is below a WidgetsApp.'
-        ' If you are using "FlexContainer", make sure "FlexContainer" is below a WidgetsApp.');
+      mediaQueryData != null,
+      'Flexi needs access to MediaQueryData.'
+      ' WidgetsApp or its implementation, like MaterialApp or CupertinoApp,'
+      ' can provide the required MediaQueryData for Flexi.'
+      ' If you are using "context.flexi",'
+      ' make sure to use the context is below a WidgetsApp.'
+      ' If you are using "FlexContainer",'
+      ' make sure "FlexContainer" is below a WidgetsApp.',
+    );
 
     return mediaQueryData!.size;
   }
@@ -44,10 +48,10 @@ class Flexi {
 
   Breakpoint get biggestBreakpoint => layout.biggestBreakpoint;
 
-  /// Returns [null] if current breakpoint is the biggest breakpoint.
+  /// Returns `null` if current breakpoint is the biggest breakpoint.
   Breakpoint? get nextBreakpoint => layout.nextBreakpoint(maybeBreakpoint?.id);
 
-  /// Returns [null] in one of these cases:
+  /// Returns `null` in one of these cases:
   /// * current breakpoint is the smallest breakpoint.
   /// * current container width is smaller than smallest breakpoint.
   Breakpoint? get previousBreakpoint =>
@@ -96,8 +100,10 @@ class Flexi {
 
   //region FlexValue
 
-  V value<BreakpointId extends Enum, V>(V startValue,
-          [Map<BreakpointId, V>? flexValues]) =>
+  V value<BreakpointId extends Enum, V>(
+    V startValue, [
+    Map<BreakpointId, V>? flexValues,
+  ]) =>
       FlexValue(startValue, flexValues).get(context);
 
   V valueBuilder<V>(FlexValueBuilder<V> builder) =>

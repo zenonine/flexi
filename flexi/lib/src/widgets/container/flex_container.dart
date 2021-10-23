@@ -151,9 +151,8 @@ class _FlexColumnsOverlay extends StatelessWidget {
           Widget? gutterBox;
           if (context.flexi.gutter <= 0 && index < context.flexi.columns - 1) {
             final columnBorderColor = options.style.columnBorderColor;
-            BorderSide leftBorder =
-                BorderSide(color: columnBorderColor, width: 0.5);
-            BorderSide rightBorder =
+            final leftBorder = BorderSide(color: columnBorderColor, width: 0.5);
+            final rightBorder =
                 BorderSide(color: columnBorderColor, width: 0.5);
 
             gutterBox = SizedBox(
@@ -257,12 +256,11 @@ class _FlexModuleOverlay extends StatelessWidget {
       children: List.generate(
         rows,
         (index) {
-          final bool isFirst = index == 0;
-          final bool isLast = index >= rows - 1;
+          final isFirst = index == 0;
+          final isLast = index >= rows - 1;
 
-          BorderSide topBorder = BorderSide(color: baselineColor, width: 0.5);
-          BorderSide bottomBorder =
-              BorderSide(color: baselineColor, width: 0.5);
+          var topBorder = BorderSide(color: baselineColor, width: 0.5);
+          var bottomBorder = BorderSide(color: baselineColor, width: 0.5);
           if (isFirst) {
             topBorder = BorderSide.none;
           }
@@ -295,28 +293,30 @@ class _FlexModuleOverlay extends StatelessWidget {
     final rows = context.flexi.format.module.rows;
     final moduleHeight = context.flexi.moduleHeight;
 
-    return Stack(children: [
-      Container(
-        decoration: BoxDecoration(
-          border: isExtraModule
-              ? Border(top: BorderSide(color: moduleColor))
-              : Border.symmetric(
-                  horizontal: BorderSide(color: moduleColor),
-                ),
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: isExtraModule
+                ? Border(top: BorderSide(color: moduleColor))
+                : Border.symmetric(
+                    horizontal: BorderSide(color: moduleColor),
+                  ),
+          ),
         ),
-      ),
-      if (options.showBaselines)
-        isExtraModule
-            ? Container(
-                decoration: const BoxDecoration(),
-                clipBehavior: Clip.hardEdge,
-                child: OverflowBox(
-                  maxHeight: moduleHeight,
-                  alignment: Alignment.topLeft,
-                  child: _buildBaselines(rows),
-                ),
-              )
-            : _buildBaselines(rows),
-    ]);
+        if (options.showBaselines)
+          isExtraModule
+              ? Container(
+                  decoration: const BoxDecoration(),
+                  clipBehavior: Clip.hardEdge,
+                  child: OverflowBox(
+                    maxHeight: moduleHeight,
+                    alignment: Alignment.topLeft,
+                    child: _buildBaselines(rows),
+                  ),
+                )
+              : _buildBaselines(rows),
+      ],
+    );
   }
 }

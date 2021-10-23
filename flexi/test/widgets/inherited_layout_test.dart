@@ -7,12 +7,16 @@ void main() {
   group('Given there are no InheritedLayout', () {
     testWidgets('MaterialLayout should be used', (tester) async {
       BuildContext? context;
-      await tester.pumpWidget(_TestApp(
-        child: Builder(builder: (ctx) {
-          context = ctx;
-          return Container();
-        }),
-      ));
+      await tester.pumpWidget(
+        _TestApp(
+          child: Builder(
+            builder: (ctx) {
+              context = ctx;
+              return Container();
+            },
+          ),
+        ),
+      );
 
       expect(InheritedLayout.of(context!), const MaterialLayout());
     });
@@ -21,22 +25,26 @@ void main() {
   group('Given InheritedLayout use BootstrapLayout', () {
     testWidgets('BootstrapLayout should be used', (tester) async {
       BuildContext? context;
-      await tester.pumpWidget(_TestApp(
-        child: InheritedLayout(
-          layout: const BootstrapLayout(),
-          child: Builder(builder: (ctx) {
-            context = ctx;
-            return Container();
-          }),
+      await tester.pumpWidget(
+        _TestApp(
+          child: InheritedLayout(
+            layout: const BootstrapLayout(),
+            child: Builder(
+              builder: (ctx) {
+                context = ctx;
+                return Container();
+              },
+            ),
+          ),
         ),
-      ));
+      );
 
       expect(InheritedLayout.of(context!), const BootstrapLayout());
     });
   });
 
   group('updateShouldNotify', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 }
 

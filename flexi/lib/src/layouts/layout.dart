@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 
 import '../index.dart';
 
+@immutable
 abstract class Breakpoint<BreakpointId extends Enum>
     implements Comparable<Breakpoint<BreakpointId>> {
   const Breakpoint({required this.id, required this.minWidth});
@@ -24,19 +25,19 @@ abstract class Breakpoint<BreakpointId extends Enum>
           minWidth == other.minWidth;
 
   bool operator <(Breakpoint<BreakpointId>? other) =>
-      other == null ? false : minWidth < other.minWidth;
+      other != null && minWidth < other.minWidth;
 
   bool operator >(Breakpoint<BreakpointId>? other) =>
-      other == null ? true : minWidth > other.minWidth;
+      other == null || minWidth > other.minWidth;
 
   bool operator <=(Breakpoint<BreakpointId>? other) =>
-      other == null ? false : minWidth <= other.minWidth;
+      other != null && minWidth <= other.minWidth;
 
   bool operator >=(Breakpoint<BreakpointId>? other) =>
-      other == null ? true : minWidth >= other.minWidth;
+      other == null || minWidth >= other.minWidth;
 
   bool eq(Breakpoint<BreakpointId>? other) =>
-      other == null ? false : minWidth == other.minWidth;
+      other != null && minWidth == other.minWidth;
 
   @override
   int compareTo(Breakpoint<BreakpointId>? other) {
@@ -49,19 +50,21 @@ abstract class Breakpoint<BreakpointId extends Enum>
   }
 }
 
+@immutable
 abstract class Layout<BreakpointId extends Enum,
     B extends Breakpoint<BreakpointId>> {
   const Layout();
 
   /// At least one breakpoint must exist.
-  /// Make sure all breakpoint enums are defined, otherwise [breakpointById] may throw exception.
+  /// Make sure all breakpoint enums are defined,
+  /// otherwise [breakpointById] may throw exception.
   abstract final SplayTreeSet<B> breakpoints;
 
   @nonVirtual
   Map<BreakpointId, B> get breakpointsMap =>
       {for (var breakpoint in breakpoints) breakpoint.id: breakpoint};
 
-  /// Returns [null] if container width is smaller than the smallest breakpoint.
+  /// Returns `null` if container width is smaller than the smallest breakpoint.
   @nonVirtual
   B? breakpoint(double containerWidth) {
     if (containerWidth < breakpoints.first.minWidth) {
@@ -90,15 +93,15 @@ abstract class Layout<BreakpointId extends Enum,
   @nonVirtual
   B breakpointById(BreakpointId id) => breakpointsMap[id]!;
 
-  /// Returns [null] if the given breakpoint is the biggest breakpoint.
+  /// Returns 'null' if the given breakpoint is the biggest breakpoint.
   @nonVirtual
   B? nextBreakpoint(BreakpointId? id) {
     final breakpoint = id == null ? null : breakpointById(id);
     return breakpoints.firstWhereOrNull((bp) => bp > breakpoint);
   }
 
-  /// Returns [null] in one of these cases:
-  /// * the given breakpoint is [null].
+  /// Returns `null` in one of these cases:
+  /// * the given breakpoint is `null`.
   /// * the given breakpoint is the smallest breakpoint.
   @nonVirtual
   B? previousBreakpoint(BreakpointId? id) {
@@ -109,8 +112,10 @@ abstract class Layout<BreakpointId extends Enum,
         .firstWhereOrNull((bp) => bp < breakpoint);
   }
 
-  LayoutFormat format(double containerWidth,
-      [double containerHeight = double.maxFinite]);
+  LayoutFormat format(
+    double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]);
 
   @override
   bool operator ==(Object other) =>

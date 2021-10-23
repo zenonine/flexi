@@ -67,7 +67,6 @@ void main() {
         topMargin: 0,
         rightMargin: 0,
         bottomMargin: 0,
-        module: LayoutModule(baseline: 0, rows: 1, gutter: 0),
       ),
       bodyWidth: 0,
     ),
@@ -658,17 +657,15 @@ void main() {
     ),
   ];
 
-  const Map<Type, List<_ExpectedLayout>> expectedTypedLayouts = {
+  <Type, List<_ExpectedLayout>>{
     FluidLayout: expectedFluidLayouts,
     MaterialLayout: expectedMaterialLayouts,
     BootstrapLayout: expectedBootstrapLayouts,
     RuleOfThirdsLayout: expectedRuleOfThirdsLayouts,
-    // TODO: CarbonLayout
-  };
-
-  expectedTypedLayouts.forEach((key, expectedLayouts) {
+    // TODO(xuan): CarbonLayout
+  }.forEach((key, expectedLayouts) {
     group('Given layout $key', () {
-      for (var expectedLayout in expectedLayouts) {
+      for (final expectedLayout in expectedLayouts) {
         final layout = expectedLayout.layout;
         final format =
             layout.format(expectedLayout.width, expectedLayout.height);
@@ -694,30 +691,30 @@ void main() {
   });
 
   group('smallestBreakpoint', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 
   group('biggestBreakpoint', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 
   group('breakpointById', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 
   group('nextBreakpoint', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 
   group('previousBreakpoint', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 
   group('Layout equality', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 
   group('Breakpoint comparison', () {
-    // TODO: implementation
+    // TODO(xuan): implementation
   });
 }
