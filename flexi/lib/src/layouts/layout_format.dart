@@ -34,11 +34,11 @@ class LayoutFormat {
   final LayoutModule module;
 
   EdgeInsets get margins => EdgeInsets.fromLTRB(
-    leftMargin,
-    topMargin,
-    rightMargin,
-    bottomMargin,
-  );
+        leftMargin,
+        topMargin,
+        rightMargin,
+        bottomMargin,
+      );
 
   LayoutFormat copy({
     int? columns,
@@ -166,15 +166,15 @@ class LayoutFormat {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is LayoutFormat &&
-              runtimeType == other.runtimeType &&
-              columns == other.columns &&
-              gutter == other.gutter &&
-              leftMargin == other.leftMargin &&
-              rightMargin == other.rightMargin &&
-              topMargin == other.topMargin &&
-              bottomMargin == other.bottomMargin &&
-              module == other.module;
+      other is LayoutFormat &&
+          runtimeType == other.runtimeType &&
+          columns == other.columns &&
+          gutter == other.gutter &&
+          leftMargin == other.leftMargin &&
+          rightMargin == other.rightMargin &&
+          topMargin == other.topMargin &&
+          bottomMargin == other.bottomMargin &&
+          module == other.module;
 
   @override
   int get hashCode =>
@@ -222,11 +222,11 @@ class LayoutModule {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is LayoutModule &&
-              runtimeType == other.runtimeType &&
-              baseline == other.baseline &&
-              rows == other.rows &&
-              gutter == other.gutter;
+      other is LayoutModule &&
+          runtimeType == other.runtimeType &&
+          baseline == other.baseline &&
+          rows == other.rows &&
+          gutter == other.gutter;
 
   @override
   int get hashCode => baseline.hashCode ^ rows.hashCode ^ gutter.hashCode;

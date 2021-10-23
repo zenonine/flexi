@@ -657,7 +657,7 @@ void main() {
     ),
   ];
 
-   <Type, List<_ExpectedLayout>>{
+  <Type, List<_ExpectedLayout>>{
     FluidLayout: expectedFluidLayouts,
     MaterialLayout: expectedMaterialLayouts,
     BootstrapLayout: expectedBootstrapLayouts,

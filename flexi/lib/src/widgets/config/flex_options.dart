@@ -39,14 +39,14 @@ class FlexOptions {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is FlexOptions &&
-              runtimeType == other.runtimeType &&
-              showOverlay == other.showOverlay &&
-              showMargins == other.showMargins &&
-              showColumns == other.showColumns &&
-              showModules == other.showModules &&
-              showBaselines == other.showBaselines &&
-              style == other.style;
+      other is FlexOptions &&
+          runtimeType == other.runtimeType &&
+          showOverlay == other.showOverlay &&
+          showMargins == other.showMargins &&
+          showColumns == other.showColumns &&
+          showModules == other.showModules &&
+          showBaselines == other.showBaselines &&
+          style == other.style;
 
   @override
   int get hashCode =>
@@ -112,15 +112,15 @@ class FlexOverlayStyle {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is FlexOverlayStyle &&
-              runtimeType == other.runtimeType &&
-              marginColor == other.marginColor &&
-              columnColor == other.columnColor &&
-              columnBorderColor == other.columnBorderColor &&
-              gutterColor == other.gutterColor &&
-              moduleColor == other.moduleColor &&
-              moduleGutterColor == other.moduleGutterColor &&
-              baselineColor == other.baselineColor;
+      other is FlexOverlayStyle &&
+          runtimeType == other.runtimeType &&
+          marginColor == other.marginColor &&
+          columnColor == other.columnColor &&
+          columnBorderColor == other.columnBorderColor &&
+          gutterColor == other.gutterColor &&
+          moduleColor == other.moduleColor &&
+          moduleGutterColor == other.moduleGutterColor &&
+          baselineColor == other.baselineColor;
 
   @override
   int get hashCode =>

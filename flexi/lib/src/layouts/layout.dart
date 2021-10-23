@@ -19,10 +19,10 @@ abstract class Breakpoint<BreakpointId extends Enum>
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Breakpoint &&
-              runtimeType == other.runtimeType &&
-              id == other.id &&
-              minWidth == other.minWidth;
+      other is Breakpoint &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          minWidth == other.minWidth;
 
   bool operator <(Breakpoint<BreakpointId>? other) =>
       other != null && minWidth < other.minWidth;
@@ -52,7 +52,7 @@ abstract class Breakpoint<BreakpointId extends Enum>
 
 @immutable
 abstract class Layout<BreakpointId extends Enum,
-B extends Breakpoint<BreakpointId>> {
+    B extends Breakpoint<BreakpointId>> {
   const Layout();
 
   /// At least one breakpoint must exist.
@@ -74,7 +74,7 @@ B extends Breakpoint<BreakpointId>> {
 
     return breakpoints.firstWhere((breakpoint) {
       final nextBreakpoint =
-      breakpoints.firstWhereOrNull((bp) => bp > breakpoint);
+          breakpoints.firstWhereOrNull((bp) => bp > breakpoint);
 
       if (nextBreakpoint == null) {
         // Returns the biggest breakpoint.
