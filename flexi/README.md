@@ -31,7 +31,7 @@
   * [Example 1 - Material - Zero Configuration](#example-1---material---zero-configuration)
   * [Example 2 - Bootstrap](#example-2---bootstrap)
   * [Example 3 - Custom Layout](#example-3---custom-layout)
-  * [Example 4 - Material - Standard Layout](#example-4---material---standard-layout)
+  * [Example 4 - Material - Component Swapping](#example-4---material---component-swapping)
 * [Usage](#usage)
 * [FAQs](#faqs)
 
@@ -144,11 +144,11 @@ class CustomLayout extends Layout<CustomBreakpointId, CustomBreakpoint> {
 }
 ```
 
-## [Example 4 - Material - Standard Layout][e4]
+## [Example 4 - Material - Component Swapping][e4]
 
 For each breakpoint, use recommended layout from material guideline.
 
-* xs: modal drawer + body + bottom app bar
+* xs: modal drawer (app bar) + body + bottom app bar
 * sm: rail + body
 * md: rail + body + sidebar
 * lg: visible drawer + body + sidebar
@@ -165,4 +165,4 @@ For each breakpoint, use recommended layout from material guideline.
 
 [e3]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_03_custom_layout.dart
 
-[e4]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_04_material_standart_layout.dart
+[e4]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_04_material_component_swapping.dart
