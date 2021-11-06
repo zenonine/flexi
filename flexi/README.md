@@ -25,15 +25,15 @@
 
 ---
 
-- [Flutter/Dart compatibility](#flutter-dart-compatibility)
-- [Installing - pubspec.yaml](#installing---pubspecyaml)
-- [[Examples][e0]](#-examples--e0-)
-  * [[Example 1 - Material - Zero Configuration][e1]](#-example-1---material---zero-configuration--e1-)
-  * [[Example 2 - Bootstrap][e2]](#-example-2---bootstrap--e2-)
-  * [[Example 3 - Custom Layout][e3]](#-example-3---custom-layout--e3-)
-  * [[Example 4 - Material - Standard Layout][e4]](#-example-4---material---standard-layout--e4-)
-- [Usage](#usage)
-- [FAQs](#faqs)
+* [Flutter/Dart compatibility](#flutter-dart-compatibility)
+* [Installing - pubspec.yaml](#installing---pubspecyaml)
+* [Examples](#-examples--e0-)
+  * [Example 1 - Material - Zero Configuration](#-example-1---material---zero-configuration--e1-)
+  * [Example 2 - Bootstrap](#-example-2---bootstrap--e2-)
+  * [Example 3 - Custom Layout](#-example-3---custom-layout--e3-)
+  * [Example 4 - Material - Standard Layout](#-example-4---material---standard-layout--e4-)
+* [Usage](#usage)
+* [FAQs](#faqs)
 
 # Flutter/Dart compatibility
 
