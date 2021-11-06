@@ -81,9 +81,7 @@ class App extends StatelessWidget {
 }
 
 class AppMenu extends StatelessWidget {
-  const AppMenu({
-    Key? key,
-  }) : super(key: key);
+  const AppMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => ListView(
@@ -125,9 +123,7 @@ class _AppRailState extends State<AppRail> {
 }
 
 class AppSidebar extends StatelessWidget {
-  const AppSidebar({
-    Key? key,
-  }) : super(key: key);
+  const AppSidebar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
