@@ -130,44 +130,37 @@ class _FlexColumnsOverlay extends StatelessWidget {
   Widget build(BuildContext context) {
     final columnColor = options.style.columnColor;
     final gutterColor = options.style.gutterColor;
+    final columnBorderColor = options.style.columnBorderColor;
+    final lastColumnIndex = context.flexi.columns - 1;
 
     return Row(
       children: List.generate(
         context.flexi.columns,
         (index) {
-          Widget columnBox;
-          if (context.flexi.gutter > 0) {
-            columnBox = SizedBox(
-              width: context.flexi.columnWidth,
-              child: Container(color: columnColor),
-            );
-          } else {
-            columnBox = SizedBox(
-              width: context.flexi.columnWidth,
-              child: Container(color: columnColor),
-            );
-          }
-
           Widget? gutterBox;
-          if (context.flexi.gutter <= 0 && index < context.flexi.columns - 1) {
-            final columnBorderColor = options.style.columnBorderColor;
-            final leftBorder = BorderSide(color: columnBorderColor, width: 0.5);
-            final rightBorder =
-                BorderSide(color: columnBorderColor, width: 0.5);
-
+          if (context.flexi.gutter > 0 && index < lastColumnIndex) {
             gutterBox = SizedBox(
               width: context.flexi.gutter,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: gutterColor,
-                  border: Border(
-                    left: leftBorder,
-                    right: rightBorder,
-                  ),
-                ),
-              ),
+              child: Container(color: gutterColor),
             );
           }
+
+          Border? columnBorder;
+          if (context.flexi.gutter <= 0) {
+            final columnBorderSide =
+                BorderSide(color: columnBorderColor, width: 0.5);
+            columnBorder = Border.symmetric(vertical: columnBorderSide);
+          }
+
+          final Widget columnBox = SizedBox(
+            width: context.flexi.columnWidth,
+            child: Container(
+              decoration: BoxDecoration(
+                color: columnColor,
+                border: columnBorder,
+              ),
+            ),
+          );
 
           return Row(
             children: [
