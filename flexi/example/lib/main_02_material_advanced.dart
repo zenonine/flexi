@@ -20,7 +20,6 @@ class App extends StatelessWidget {
         title: 'Flexi Example 02 - Material - Advanced',
         home: Builder(
           builder: (context) {
-            // final breakpointId = context.flexi.breakpoint.id;
             return FlexWidget(
               startWidget: (_) => FlexContainer(
                 child: Scaffold(
