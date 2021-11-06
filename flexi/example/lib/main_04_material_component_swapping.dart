@@ -41,7 +41,7 @@ class App extends StatelessWidget {
     return FlexConfig(
       showOverlay: true,
       child: MaterialApp(
-        title: 'Flexi Example 02 - Material - Advanced',
+        title: 'Flexi Example - Material - Advanced',
         home: FlexWidget(
           startWidget: (_) => Scaffold(
             drawer: const Drawer(child: AppMenu()),
