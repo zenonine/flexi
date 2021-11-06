@@ -21,10 +21,8 @@
       <img src="https://codecov.io/gh/zenonine/flexi/branch/master/graph/badge.svg?token=9BC8HAHKKL" alt="code coverage"/>
     </a>
   </div>
-
-  <a href="./flexi" style="font-size: xx-large">
-    Documentation and examples
-  </a>
 </div>
 
 ---
+
+# [Documentation and examples](flexi)
