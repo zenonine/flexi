@@ -10,43 +10,98 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // xs: bottom app bar + hidden drawer
-    // sm: left rail
-    // md: left rail + right column
-    // lg: full drawer + right column
+    // xs: modal drawer + body + bottom app bar
+    // sm: left rail + body
+    // md: left rail + body + sidebar
+    // lg: full drawer + body + sidebar
     return FlexConfig(
       showOverlay: true,
       child: MaterialApp(
         title: 'Flexi Example 02 - Material - Advanced',
-        home: Builder(
-          builder: (context) {
-            return FlexWidget(
-              startWidget: (_) => FlexContainer(
-                child: Scaffold(
-                  drawer: const Drawer(child: Text('Drawer')),
-                  appBar: AppBar(
-                    title: const Text('AppBar'),
-                  ),
-                  body: const HomePage(),
+        home: FlexWidget(
+          startWidget: (_) => Scaffold(
+            drawer: const Drawer(child: AppMenu()),
+            appBar: AppBar(
+              title: const Text('AppBar'),
+            ),
+            body: const AppBody(),
+            bottomNavigationBar: BottomNavigationBar(
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
                 ),
-              ),
-              flexWidgets: {
-                MaterialBreakpointId.sm: (_) => Scaffold(
-                      body: Row(
-                        children: const [
-                          AppRail(),
-                          VerticalDivider(thickness: 1, width: 1),
-                          Expanded(child: FlexContainer(child: HomePage())),
-                        ],
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite),
+                  label: 'Favorite',
+                )
+              ],
+            ),
+          ),
+          flexWidgets: {
+            MaterialBreakpointId.sm: (_) => Scaffold(
+                  body: Row(
+                    children: [
+                      FlexWidget(
+                        startWidget: (_) => const AppRail(),
+                        flexWidgets: {
+                          MaterialBreakpointId.lg: (_) => const SizedBox(
+                                width: 256,
+                                child: AppMenu(),
+                              ),
+                        },
                       ),
-                    ),
-              },
-            );
+                      const VerticalDivider(thickness: 1, width: 1),
+                      const Expanded(child: AppBody()),
+                      FlexWidget(
+                        flexWidgets: {
+                          MaterialBreakpointId.md: (_) => Row(
+                                children: const [
+                                  VerticalDivider(thickness: 1, width: 1),
+                                  AppSidebar(),
+                                ],
+                              )
+                        },
+                      ),
+                    ],
+                  ),
+                ),
           },
         ),
       ),
     );
   }
+}
+
+class AppSidebar extends StatelessWidget {
+  const AppSidebar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      width: 300,
+      child: Center(
+        child: Text('Sidebar'),
+      ),
+    );
+  }
+}
+
+class AppMenu extends StatelessWidget {
+  const AppMenu({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => ListView(
+        children: const [
+          Text('Menu 1'),
+          Text('Menu 2'),
+          Text('Menu 3'),
+        ],
+      );
 }
 
 class AppRail extends StatefulWidget {
@@ -78,8 +133,8 @@ class _AppRailState extends State<AppRail> {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class AppBody extends StatelessWidget {
+  const AppBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
