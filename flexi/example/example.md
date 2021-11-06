@@ -3,6 +3,8 @@ dependencies:
   flexi: <latest-version>
 ```
 
+Without any configuration, material layout by default is applied to your whole screen and ready to be used.
+
 ```dart
 import 'package:flexi/flexi.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Flexi Example - Material Layout',
       home: Scaffold(body: HomePage()),
     );
   }

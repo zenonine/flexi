@@ -18,18 +18,10 @@
       <img src="https://codecov.io/gh/zenonine/flexi/branch/master/graph/badge.svg?token=9BC8HAHKKL" alt="code coverage"/>
     </a>
   </div>
+
+  <a href="./flexi" style="font-size: xx-large">
+    Documentation and examples
+  </a>
 </div>
 
 ---
-
-* [Documentation and examples](flexi)
-  * [Material - Zero Configuration](flexi/example/lib/main_01_material_zero_configuration.dart)
-
-    Without any configuration, material layout by default is applied to your whole screen.
-  * [Material - Advanced](flexi/example/lib/main_02_material_advanced.dart)
-
-    For each breakpoint, use recommended layout from material guideline.
-    * xs: bottom app bar + hidden drawer
-    * sm: left rail
-    * md: left rail + right column
-    * lg: full visible drawer + right column

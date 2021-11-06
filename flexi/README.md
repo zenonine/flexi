@@ -25,6 +25,16 @@
 
 ---
 
+- [Flutter/Dart compatibility](#flutter-dart-compatibility)
+- [Installing - pubspec.yaml](#installing---pubspecyaml)
+- [[Examples][e0]](#-examples--e0-)
+  * [[Example 1 - Material - Zero Configuration][e1]](#-example-1---material---zero-configuration--e1-)
+  * [[Example 2 - Bootstrap][e2]](#-example-2---bootstrap--e2-)
+  * [[Example 3 - Custom Layout][e3]](#-example-3---custom-layout--e3-)
+  * [[Example 4 - Material - Standard Layout][e4]](#-example-4---material---standard-layout--e4-)
+- [Usage](#usage)
+- [FAQs](#faqs)
+
 # Flutter/Dart compatibility
 
 | Flexi               | Flutter               | Dart                |
@@ -38,9 +48,11 @@ dependencies:
   flexi: <latest-version>
 ```
 
-# [Example 1 - Material - Zero Configuration](https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_01_material_zero_configuration.dart)
+# [Examples][e0]
 
-Without any configuration, material layout by default is applied to your whole screen.
+## [Example 1 - Material - Zero Configuration][e1]
+
+Without any configuration, material layout by default is applied to your whole screen and ready to be used.
 
 ```dart
 import 'package:flexi/flexi.dart';
@@ -71,7 +83,68 @@ class HomePage extends StatelessWidget {
 }
 ```
 
-# [Example 2 - Material - Standard Layout](https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_02_material_advanced.dart)
+## [Example 2 - Bootstrap][e2]
+
+```dart
+Widget build(BuildContext context) {
+  return const FlexLayout(
+    layout: BootstrapLayout(),
+    child: MaterialApp(
+      home: Scaffold(body: HomePage()),
+    ),
+  );
+}
+```
+
+## [Example 3 - Custom Layout][e3]
+
+To create your custom layout, you only need to
+extend [Layout](https://github.com/zenonine/flexi/blob/master/flexi/lib/src/layouts/layout.dart) class. Using your
+custom layout is similar to previous example. You can learn more from
+[MaterialLayout](https://github.com/zenonine/flexi/blob/master/flexi/lib/src/layouts/material_layout.dart)
+, [BootstrapLayout](https://github.com/zenonine/flexi/blob/master/flexi/lib/src/layouts/bootstrap_layout.dart) and
+other [predefined layouts](https://github.com/zenonine/flexi/tree/master/flexi/lib/src/layouts).
+
+```dart
+import 'dart:collection';
+
+import 'package:flexi/flexi.dart';
+
+enum CustomBreakpointId { sm, md }
+
+class CustomBreakpoint extends Breakpoint<CustomBreakpointId> {
+  const CustomBreakpoint({
+    required CustomBreakpointId id,
+    required double minWidth,
+  }) : super(id: id, minWidth: minWidth);
+}
+
+class CustomLayout extends Layout<CustomBreakpointId, CustomBreakpoint> {
+  const CustomLayout();
+
+  @override
+  SplayTreeSet<CustomBreakpoint> get breakpoints =>
+      SplayTreeSet.from(<CustomBreakpoint>{
+        const CustomBreakpoint(id: CustomBreakpointId.sm, minWidth: 0),
+        const CustomBreakpoint(id: CustomBreakpointId.md, minWidth: 600),
+      });
+
+  @override
+  LayoutFormat format(double containerWidth, [
+    double containerHeight = double.maxFinite,
+  ]) =>
+      const LayoutFormat(
+        columns: 4,
+        gutter: 0,
+        leftMargin: 0,
+        topMargin: 0,
+        rightMargin: 0,
+        bottomMargin: 0,
+      );
+}
+```
+
+## [Example 4 - Material - Standard Layout][e4]
 
 For each breakpoint, use recommended layout from material guideline.
 
@@ -79,3 +152,17 @@ For each breakpoint, use recommended layout from material guideline.
 * sm: rail + body
 * md: rail + body + sidebar
 * lg: visible drawer + body + sidebar
+
+# Usage
+
+# FAQs
+
+[e0]: https://github.com/zenonine/flexi/tree/master/flexi/example/lib
+
+[e1]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_01_material_zero_configuration.dart
+
+[e2]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_02_bootstrap.dart
+
+[e3]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_03_custom_layout.dart
+
+[e4]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_04_material_standart_layout.dart
