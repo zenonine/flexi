@@ -35,9 +35,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // xs: modal drawer + body + bottom app bar
-    // sm: left rail + body
-    // md: left rail + body + sidebar
-    // lg: full drawer + body + sidebar
+    // sm: rail + body
+    // md: rail + body + sidebar
+    // lg: visible drawer + body + sidebar
     return FlexConfig(
       showOverlay: true,
       child: MaterialApp(
@@ -145,10 +145,10 @@ class AppBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Root breakpoint: ${context.flexi.breakpoint.id}'),
+            Text('Full screen: ${context.flexi.breakpoint.id}'),
             Builder(
               builder: (context) =>
-                  Text('Body breakpoint: ${context.flexi.breakpoint.id}'),
+                  Text('Body: ${context.flexi.breakpoint.id}'),
             ),
           ],
         ),
