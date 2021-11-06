@@ -140,6 +140,19 @@ class AppBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(context.flexi.breakpoint.id.toString()));
+    return FlexContainer(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Root breakpoint: ${context.flexi.breakpoint.id}'),
+            Builder(
+              builder: (context) =>
+                  Text('Body breakpoint: ${context.flexi.breakpoint.id}'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
