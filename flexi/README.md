@@ -38,7 +38,7 @@ dependencies:
   flexi: <latest-version>
 ```
 
-# Example 1 - Material - Zero Configuration
+# [Example 1 - Material - Zero Configuration](https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_01_material_zero_configuration.dart)
 
 Without any configuration, material layout by default is applied to your whole screen.
 
@@ -71,11 +71,11 @@ class HomePage extends StatelessWidget {
 }
 ```
 
-# Example 2 - Material - Standard Layout
+# [Example 2 - Material - Standard Layout](https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_02_material_advanced.dart)
 
 For each breakpoint, use recommended layout from material guideline.
 
-* xs: bottom app bar + hidden drawer
-* sm: left rail
-* md: left rail + right column
-* lg: full visible drawer + right column
+* xs: modal drawer + body + bottom app bar
+* sm: rail + body
+* md: rail + body + sidebar
+* lg: visible drawer + body + sidebar

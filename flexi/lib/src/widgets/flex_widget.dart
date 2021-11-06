@@ -5,11 +5,14 @@ import '../index.dart';
 class FlexWidget<BreakpointId extends Enum> extends StatelessWidget {
   FlexWidget({
     Key? key,
-    required WidgetBuilder startWidget,
+    WidgetBuilder? startWidget,
     Map<BreakpointId, WidgetBuilder>? flexWidgets,
   }) : this._value(
           key: key,
-          flexValue: FlexValue(startWidget, flexWidgets),
+          flexValue: FlexValue(
+            startWidget ?? (_) => const SizedBox.shrink(),
+            flexWidgets,
+          ),
         );
 
   const FlexWidget._value({
