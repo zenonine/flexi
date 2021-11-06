@@ -80,17 +80,6 @@ class App extends StatelessWidget {
   }
 }
 
-class AppSidebar extends StatelessWidget {
-  const AppSidebar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text('Sidebar'));
-  }
-}
-
 class AppMenu extends StatelessWidget {
   const AppMenu({
     Key? key,
@@ -132,6 +121,17 @@ class _AppRailState extends State<AppRail> {
         ),
       ],
     );
+  }
+}
+
+class AppSidebar extends StatelessWidget {
+  const AppSidebar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('Sidebar'));
   }
 }
 
