@@ -8,6 +8,30 @@ void main() {
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
+  FlexWidget<MaterialBreakpointId> _buildRailOrMenu() => FlexWidget(
+        startWidget: (_) => const AppRail(),
+        flexWidgets: {
+          MaterialBreakpointId.lg: (_) => const SizedBox(
+                width: 256,
+                child: AppMenu(),
+              ),
+        },
+      );
+
+  FlexWidget<MaterialBreakpointId> _buildSidebar() => FlexWidget(
+        flexWidgets: {
+          MaterialBreakpointId.md: (_) => Row(
+                children: const [
+                  VerticalDivider(thickness: 1, width: 1),
+                  SizedBox(
+                    width: 256,
+                    child: Expanded(child: AppSidebar()),
+                  ),
+                ],
+              )
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     // xs: modal drawer + body + bottom app bar
@@ -42,27 +66,10 @@ class App extends StatelessWidget {
             MaterialBreakpointId.sm: (_) => Scaffold(
                   body: Row(
                     children: [
-                      FlexWidget(
-                        startWidget: (_) => const AppRail(),
-                        flexWidgets: {
-                          MaterialBreakpointId.lg: (_) => const SizedBox(
-                                width: 256,
-                                child: AppMenu(),
-                              ),
-                        },
-                      ),
+                      _buildRailOrMenu(),
                       const VerticalDivider(thickness: 1, width: 1),
                       const Expanded(child: AppBody()),
-                      FlexWidget(
-                        flexWidgets: {
-                          MaterialBreakpointId.md: (_) => Row(
-                                children: const [
-                                  VerticalDivider(thickness: 1, width: 1),
-                                  AppSidebar(),
-                                ],
-                              )
-                        },
-                      ),
+                      _buildSidebar(),
                     ],
                   ),
                 ),
@@ -80,12 +87,7 @@ class AppSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      width: 300,
-      child: Center(
-        child: Text('Sidebar'),
-      ),
-    );
+    return const Center(child: Text('Sidebar'));
   }
 }
 
