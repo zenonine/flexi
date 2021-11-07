@@ -70,9 +70,11 @@ class Flexi {
 
   double get bodyHeight => format.bodyHeight(containerSize.height);
 
+  Size get bodySize => format.bodySize(containerSize);
+
   double get columnWidth => format.columnWidth(containerSize.width);
 
-  //region LayoutModule
+//region LayoutModule
 
   int get modules => format.modules(containerSize.height);
 
@@ -84,9 +86,9 @@ class Flexi {
 
   double get moduleHeight => format.module.height;
 
-  //endregion
+//endregion
 
-  //region Region size
+//region Region size
 
   double regionWidth([int columns = 1]) =>
       format.regionWidth(columns, containerSize.width);
@@ -96,9 +98,9 @@ class Flexi {
   Size regionSize({int columns = 1, int modules = 1}) =>
       Size(regionWidth(columns), regionHeight(modules));
 
-  //endregion
+//endregion
 
-  //region FlexValue
+//region FlexValue
 
   V value<BreakpointId extends Enum, V>(
     V startValue, [
