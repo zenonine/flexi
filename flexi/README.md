@@ -4,7 +4,7 @@
   </a>
 
   <p>
-    Beside Material and Bootstrap breakpoint systems, Flexi allows to create your own layout easily.
+    Beside Material and Bootstrap breakpoint systems, Flexi allows to create your own layout easily for different grid types: Manuscript, Columns, Modular and Baseline.
   </p>
 
   <div>

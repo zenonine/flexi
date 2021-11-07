@@ -144,7 +144,7 @@ class AppBody extends StatelessWidget {
             Text('Full screen: ${context.flexi.breakpoint.id}'),
             Builder(
               builder: (context) =>
-                  Text('Body: ${context.flexi.breakpoint.id}'),
+                  Text('Content area: ${context.flexi.breakpoint.id}'),
             ),
           ],
         ),
