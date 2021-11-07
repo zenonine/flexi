@@ -5,10 +5,14 @@ import '../../index.dart';
 class FlexContainer extends StatefulWidget {
   const FlexContainer({
     Key? key,
+    this.name,
+    required this.layout,
     required this.child,
     this.fullSize = true,
   }) : super(key: key);
 
+  final String? name;
+  final Layout layout;
   final Widget child;
   final bool fullSize;
 
@@ -37,23 +41,36 @@ class FlexContainerState extends State<FlexContainer> {
 
   @override
   Widget build(BuildContext context) {
+    final isRoot = InheritedRootContainer.maybeOf(context) == null;
     return LayoutBuilder(
       builder: (context, constraints) {
-        return InheritedContainer(
-          containerContext: ContainerContext(
-            context: context,
-            constraints: constraints,
-          ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: getMargins(context),
-                child: widget.child,
-              ),
-              if (options.showOverlay) _FlexOverlay(options: options),
-            ],
-          ),
+        final containerChild = Stack(
+          children: [
+            Padding(
+              padding: getMargins(context),
+              child: widget.child,
+            ),
+            if (options.showOverlay) _FlexOverlay(options: options),
+          ],
         );
+
+        final containerContext = ContainerContext(
+          name: widget.name,
+          isRoot: isRoot,
+          layout: widget.layout,
+          context: context,
+          constraints: constraints,
+        );
+
+        return isRoot
+            ? InheritedRootContainer(
+                containerContext: containerContext,
+                child: containerChild,
+              )
+            : InheritedContainer(
+                containerContext: containerContext,
+                child: containerChild,
+              );
       },
     );
   }

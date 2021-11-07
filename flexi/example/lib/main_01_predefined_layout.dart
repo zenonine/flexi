@@ -10,8 +10,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const MaterialApp(
-        title: 'Flexi Example - Material - Zero Configuration',
-        home: Scaffold(body: HomePage()),
+        title: 'Flexi Example - Bootstrap',
+        home: FlexContainer(
+          // See also other predefined layouts:
+          // BootstrapLayout, CarbonLayout, RuleOfThirdsLayout and FluidLayout
+          layout: MaterialLayout(),
+          child: Scaffold(body: HomePage()),
+        ),
       );
 }
 
@@ -20,5 +25,5 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Center(child: Text(context.flexi.breakpoint.id.toString()));
+      Center(child: Text(context.flexi.breakpoint.toString()));
 }

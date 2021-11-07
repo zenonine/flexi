@@ -43,10 +43,10 @@ class _TestApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlexLayout(
-      layout: const TestLayout(),
-      child: MaterialApp(
-        home: FlexWidget(
+    return MaterialApp(
+      home: FlexContainer(
+        layout: const TestLayout(),
+        child: FlexWidget(
           startWidget: (_) => const Text('xs/sm'),
           flexWidgets: {
             TestBreakpointId.md: (_) => const Text('md/lg'),

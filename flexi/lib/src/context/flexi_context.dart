@@ -8,36 +8,10 @@ class Flexi {
 
   FlexOptions get options => InheritedOptions.of(context);
 
-  Size get containerSize {
-    final biggestSize =
-        context.internalFlexi.containerContext?.constraints.biggest;
+  Size get containerSize =>
+      context.internalFlexi.containerContext.constraints.biggest;
 
-    if (biggestSize != null) {
-      return biggestSize;
-    }
-
-    // MediaQueryData.fromWindow() can solve the problem "No MediaQuery widget
-    // ancestor found.".
-    // But resize window doesn't update containerSize result.
-    // To update containerSize, we must use WidgetsBindingObserver.
-    // But WidgetsBindingObserver is not possible to use here.
-    // The only solution is to make sure [context] is inside a [WidgetsApp].
-    final mediaQueryData = MediaQuery.maybeOf(context);
-    assert(
-      mediaQueryData != null,
-      'Flexi needs access to MediaQueryData.'
-      ' WidgetsApp or its implementation, like MaterialApp or CupertinoApp,'
-      ' can provide the required MediaQueryData for Flexi.'
-      ' If you are using "context.flexi",'
-      ' make sure to use the context is below a WidgetsApp.'
-      ' If you are using "FlexContainer",'
-      ' make sure "FlexContainer" is below a WidgetsApp.',
-    );
-
-    return mediaQueryData!.size;
-  }
-
-  Layout get layout => InheritedLayout.of(context);
+  Layout get layout => context.internalFlexi.containerContext.layout;
 
   Breakpoint? get maybeBreakpoint => layout.breakpoint(containerSize.width);
 
@@ -112,13 +86,27 @@ class Flexi {
       FlexValue.builder(builder).get(context);
 
 //endregion
+
+  String? get name => context.internalFlexi.containerContext.name;
+
+  bool get isRoot => context.internalFlexi.containerContext.isRoot;
+
+  Flexi get parent => context.internalFlexi.containerContext.context.flexi;
+
+// Flexi get root => context.internalFlexi.rootContainerContext.context.flexi;
 }
 
 /// Add context shortcut methods to use internally here.
 class InternalFlexi extends Flexi {
   const InternalFlexi(BuildContext context) : super(context);
 
-  ContainerContext? get containerContext => InheritedContainer.of(context);
+  ContainerContext get rootContainerContext =>
+      InheritedRootContainer.of(context);
+
+  ContainerContext get containerContext => InheritedContainer.of(context);
+
+  ContainerContext? get parentContainerContext =>
+      InheritedContainer.maybeOf(containerContext.context);
 }
 
 extension FlexiContext on BuildContext {

@@ -11,11 +11,17 @@ class InheritedContainer extends InheritedWidget {
 
   final ContainerContext containerContext;
 
-  static ContainerContext? of(BuildContext context) {
-    return context
-        .dependOnInheritedWidgetOfExactType<InheritedContainer>()
-        ?.containerContext;
-  }
+  static ContainerContext of(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<InheritedContainer>()
+          ?.containerContext ??
+      InheritedRootContainer.of(context);
+
+  static ContainerContext? maybeOf(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<InheritedContainer>()
+          ?.containerContext ??
+      InheritedRootContainer.maybeOf(context);
 
   @override
   bool updateShouldNotify(covariant InheritedContainer oldWidget) {

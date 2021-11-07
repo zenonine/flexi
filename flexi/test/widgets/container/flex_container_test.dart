@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../index.dart';
+import '../../index.dart';
 
 void main() {
   group(
@@ -89,6 +89,7 @@ void main() {
                 child: SizedBox.square(
                   dimension: 100,
                   child: _MockFlexContainer(
+                    layout: const MaterialLayout(),
                     fullSize: false,
                     child: Builder(
                       builder: (ctx) {
@@ -117,6 +118,7 @@ void main() {
                 child: SizedBox.square(
                   dimension: 100,
                   child: _MockFlexContainer(
+                    layout: const MaterialLayout(),
                     child: Builder(
                       builder: (ctx) {
                         context = ctx;
@@ -155,11 +157,13 @@ class _TestContainerContext extends StatelessWidget {
         child: SizedBox.square(
           dimension: 200,
           child: FlexContainer(
+            layout: const TestLayout(),
             child: Builder(
               builder: (middleContext) => UnconstrainedBox(
                 child: SizedBox.square(
                   dimension: 100,
                   child: FlexContainer(
+                    layout: const TestLayout(),
                     child: Builder(
                       builder: (bottomContext) {
                         onBuild(
@@ -171,8 +175,8 @@ class _TestContainerContext extends StatelessWidget {
                       },
                     ),
                   ),
-                ),
-              ),
+                    ),
+                  ),
             ),
           ),
         ),
@@ -193,9 +197,10 @@ class _TestMargins extends StatelessWidget {
 class _MockFlexContainer extends FlexContainer {
   const _MockFlexContainer({
     Key? key,
+    required Layout layout,
     required Widget child,
     bool fullSize = true,
-  }) : super(key: key, child: child, fullSize: fullSize);
+  }) : super(key: key, layout: layout, child: child, fullSize: fullSize);
 
   @override
   State<FlexContainer> createState() => _MockFlexContainerState();

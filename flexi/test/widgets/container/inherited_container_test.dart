@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../index.dart';
+import '../../index.dart';
 
 void main() {
   group('Given there are no InheritedContainer', () {
@@ -18,7 +18,12 @@ void main() {
         ),
       );
 
-      expect(InheritedContainer.of(context!), null);
+      expect(
+        () => InheritedContainer.of(context!),
+        throwsAssertionError,
+      );
+
+      expect(InheritedContainer.maybeOf(context!), null);
     });
   });
 
@@ -31,6 +36,7 @@ void main() {
           child: LayoutBuilder(
             builder: (ctx, constraints) {
               expectedContainerContext = ContainerContext(
+                layout: const TestLayout(),
                 context: ctx,
                 constraints: constraints,
               );

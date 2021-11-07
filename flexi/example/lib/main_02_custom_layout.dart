@@ -11,11 +11,14 @@ class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => const FlexLayout(
-        layout: CustomLayout(),
-        child: MaterialApp(
-          title: 'Flexi Example - Custom Layout',
-          home: Scaffold(body: HomePage()),
+  Widget build(BuildContext context) => const MaterialApp(
+        title: 'Flexi Example - Custom Layout',
+        home: FlexContainer(
+          // Learn more from predefined layouts:
+          // MaterialLayout, BootstrapLayout, CarbonLayout, RuleOfThirdsLayout
+          // and FluidLayout
+          layout: CustomLayout(),
+          child: Scaffold(body: HomePage()),
         ),
       );
 }
