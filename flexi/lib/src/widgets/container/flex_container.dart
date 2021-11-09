@@ -41,10 +41,10 @@ class FlexContainerState extends State<FlexContainer> {
 
   @override
   Widget build(BuildContext context) {
-    final isRoot = InheritedRootContainer.maybeOf(context) == null;
+    final isRoot = context.internalFlexi.rootContainerMarkerContext == null;
     return LayoutBuilder(
       builder: (context, constraints) {
-        final containerChild = Stack(
+        final child = Stack(
           children: [
             Padding(
               padding: getMargins(context),
@@ -54,23 +54,34 @@ class FlexContainerState extends State<FlexContainer> {
           ],
         );
 
-        final containerContext = ContainerContext(
-          name: widget.name,
-          isRoot: isRoot,
-          layout: widget.layout,
-          context: context,
-          constraints: constraints,
-        );
-
-        return isRoot
-            ? InheritedRootContainer(
-                containerContext: containerContext,
-                child: containerChild,
-              )
-            : InheritedContainer(
-                containerContext: containerContext,
-                child: containerChild,
+        return InheritedContainer(
+          context: ContainerContext(
+            name: widget.name,
+            isRoot: isRoot,
+            layout: widget.layout,
+            context: context,
+            constraints: constraints,
+          ),
+          child: Builder(
+            builder: (context) {
+              return InheritedInnerContainer(
+                context: InnerContainerContext(
+                  name: widget.name,
+                  isRoot: isRoot,
+                  context: context,
+                ),
+                child: isRoot
+                    ? Builder(
+                        builder: (context) => InheritedRootContainerMarker(
+                          context: context,
+                          child: child,
+                        ),
+                      )
+                    : child,
               );
+            },
+          ),
+        );
       },
     );
   }

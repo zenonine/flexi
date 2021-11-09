@@ -8,11 +8,6 @@ class Flexi {
 
   FlexOptions get options => InheritedOptions.of(context);
 
-  Size get containerSize =>
-      context.internalFlexi.containerContext.constraints.biggest;
-
-  Layout get layout => context.internalFlexi.containerContext.layout;
-
   Breakpoint? get maybeBreakpoint => layout.breakpoint(containerSize.width);
 
   /// Throws exception if container width is smaller than smallest breakpoint.
@@ -87,26 +82,38 @@ class Flexi {
 
 //endregion
 
-  String? get name => context.internalFlexi.containerContext.name;
+//region Container context
+  Size get containerSize =>
+      context.internalFlexi.containerContext!.constraints.biggest;
 
-  bool get isRoot => context.internalFlexi.containerContext.isRoot;
+  Layout get layout => context.internalFlexi.containerContext!.layout;
 
-  Flexi get parent => context.internalFlexi.containerContext.context.flexi;
+  String? get name => context.internalFlexi.containerContext!.name;
 
-// Flexi get root => context.internalFlexi.rootContainerContext.context.flexi;
+  bool get isRoot => context.internalFlexi.containerContext!.isRoot;
+
+  Flexi? get parent {
+    final outerContext = context.internalFlexi.containerContext!.context;
+    final parentInnerContainerContext =
+        outerContext.internalFlexi.innerContainerContext;
+    return parentInnerContainerContext?.context.flexi;
+  }
+
+  Flexi get root => context.internalFlexi.rootContainerMarkerContext!.flexi;
+//endregion
 }
 
 /// Add context shortcut methods to use internally here.
 class InternalFlexi extends Flexi {
   const InternalFlexi(BuildContext context) : super(context);
 
-  ContainerContext get rootContainerContext =>
-      InheritedRootContainer.of(context);
+  ContainerContext? get containerContext => InheritedContainer.of(context);
 
-  ContainerContext get containerContext => InheritedContainer.of(context);
+  InnerContainerContext? get innerContainerContext =>
+      InheritedInnerContainer.of(context);
 
-  ContainerContext? get parentContainerContext =>
-      InheritedContainer.maybeOf(containerContext.context);
+  BuildContext? get rootContainerMarkerContext =>
+      InheritedRootContainerMarker.of(context);
 }
 
 extension FlexiContext on BuildContext {

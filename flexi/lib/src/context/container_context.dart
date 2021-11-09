@@ -6,7 +6,7 @@ import '../index.dart';
 class ContainerContext {
   const ContainerContext({
     this.name,
-    required this.isRoot,
+    this.isRoot = false,
     required this.layout,
     required this.context,
     required this.constraints,
@@ -36,4 +36,29 @@ class ContainerContext {
       layout.hashCode ^
       context.hashCode ^
       constraints.hashCode;
+}
+
+@immutable
+class InnerContainerContext {
+  const InnerContainerContext({
+    this.name,
+    this.isRoot = false,
+    required this.context,
+  });
+
+  final String? name;
+  final bool isRoot;
+  final BuildContext context;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is InnerContainerContext &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          isRoot == other.isRoot &&
+          context == other.context;
+
+  @override
+  int get hashCode => name.hashCode ^ isRoot.hashCode ^ context.hashCode;
 }
