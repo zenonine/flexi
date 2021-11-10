@@ -138,22 +138,14 @@ class AppBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlexConfig(
       showOverlay: true,
-      child: FlexContainer(
-        layout: const BootstrapLayout(),
-        child: Center(
+      child: FlexContainerBuilder(
+        layout: const MaterialLayout(),
+        builder: (context) => Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Full screen: ${context.flexi.name}'),
-              Text('Full screen parent: ${context.flexi.parent.name}'),
-              Builder(
-                builder: (context) =>
-                    Text('Content area: ${context.flexi.containerSize}'),
-              ),
-              Builder(
-                builder: (context) =>
-                    Text('Parent: ${context.flexi.parent.name}'),
-              ),
+              Text('Full screen: ${context.flexi.parent?.containerSize}'),
+              Text('Content area: ${context.flexi.containerSize}'),
             ],
           ),
         ),

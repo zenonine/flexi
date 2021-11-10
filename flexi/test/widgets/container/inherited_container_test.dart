@@ -18,12 +18,7 @@ void main() {
         ),
       );
 
-      expect(
-        () => InheritedContainer.of(context!),
-        throwsAssertionError,
-      );
-
-      expect(InheritedContainer.maybeOf(context!), null);
+      expect(InheritedContainer.of(context!), null);
     });
   });
 
@@ -42,7 +37,7 @@ void main() {
               );
 
               return InheritedContainer(
-                containerContext: expectedContainerContext!,
+                context: expectedContainerContext!,
                 child: Builder(
                   builder: (ctx) {
                     context = ctx;
