@@ -25,7 +25,7 @@ class App extends StatelessWidget {
                   VerticalDivider(thickness: 1, width: 1),
                   SizedBox(
                     width: 256,
-                    child: Expanded(child: AppSidebar()),
+                    child: AppSidebar(),
                   ),
                 ],
               )
@@ -38,11 +38,11 @@ class App extends StatelessWidget {
     // sm: rail + body
     // md: rail + body + sidebar
     // lg: visible drawer + body + sidebar
-    return FlexConfig(
-      showOverlay: true,
-      child: MaterialApp(
-        title: 'Flexi Example - Material - Advanced',
-        home: FlexWidget(
+    return MaterialApp(
+      title: 'Flexi Example - Material - Advanced',
+      home: FlexContainer(
+        layout: const MaterialLayout(),
+        child: FlexWidget(
           startWidget: (_) => Scaffold(
             drawer: const Drawer(child: AppMenu()),
             appBar: AppBar(
@@ -136,17 +136,18 @@ class AppBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlexContainer(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Full screen: ${context.flexi.breakpoint.id}'),
-            Builder(
-              builder: (context) =>
-                  Text('Body: ${context.flexi.breakpoint.id}'),
-            ),
-          ],
+    return FlexConfig(
+      showOverlay: true,
+      child: FlexContainerBuilder(
+        layout: const MaterialLayout(),
+        builder: (context) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Full screen: ${context.flexi.root.containerSize}'),
+              Text('Content area: ${context.flexi.containerSize}'),
+            ],
+          ),
         ),
       ),
     );

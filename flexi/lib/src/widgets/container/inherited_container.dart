@@ -6,19 +6,54 @@ class InheritedContainer extends InheritedWidget {
   const InheritedContainer({
     Key? key,
     required Widget child,
-    required this.containerContext,
+    required this.context,
   }) : super(key: key, child: child);
 
-  final ContainerContext containerContext;
+  final ContainerContext context;
 
-  static ContainerContext? of(BuildContext context) {
-    return context
-        .dependOnInheritedWidgetOfExactType<InheritedContainer>()
-        ?.containerContext;
-  }
+  static ContainerContext? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<InheritedContainer>()?.context;
 
   @override
   bool updateShouldNotify(covariant InheritedContainer oldWidget) {
-    return containerContext != oldWidget.containerContext;
+    return context != oldWidget.context;
+  }
+}
+
+class InheritedInnerContainer extends InheritedWidget {
+  const InheritedInnerContainer({
+    Key? key,
+    required Widget child,
+    required this.context,
+  }) : super(key: key, child: child);
+
+  final InnerContainerContext context;
+
+  static InnerContainerContext? of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<InheritedInnerContainer>()
+      ?.context;
+
+  @override
+  bool updateShouldNotify(covariant InheritedInnerContainer oldWidget) {
+    return context != oldWidget.context;
+  }
+}
+
+class InheritedRootContainerMarker extends InheritedWidget {
+  const InheritedRootContainerMarker({
+    Key? key,
+    required Widget child,
+    required this.context,
+  }) : super(key: key, child: child);
+
+  final BuildContext context;
+
+  static BuildContext? of(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<InheritedRootContainerMarker>()
+      ?.context;
+
+  @override
+  bool updateShouldNotify(covariant InheritedRootContainerMarker oldWidget) {
+    return context != oldWidget.context;
   }
 }

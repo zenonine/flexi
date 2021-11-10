@@ -4,7 +4,7 @@
   </a>
 
   <p>
-    Beside Material and Bootstrap breakpoint systems, Flexi allows to create your own layout easily.
+    Beside Material and Bootstrap breakpoint systems, Flexi allows to create your own layout easily for different grid types: Manuscript, Columns, Modular and Baseline.
   </p>
 
   <div>
@@ -28,10 +28,9 @@
 * [Flutter/Dart compatibility](#flutter-dart-compatibility)
 * [Installing - pubspec.yaml](#installing---pubspecyaml)
 * [Examples](#examples)
-  * [Example 1 - Material - Zero Configuration](#example-1---material---zero-configuration)
-  * [Example 2 - Bootstrap](#example-2---bootstrap)
-  * [Example 3 - Custom Layout](#example-3---custom-layout)
-  * [Example 4 - Material - Component Swapping](#example-4---material---component-swapping)
+  * [Example 1 - Predefined Layouts](#example-1---predefined-layouts)
+  * [Example 2 - Custom Layout](#example-2---custom-layout)
+  * [Example 3 - Component Swapping](#example-3---component-swapping)
 * [Usage](#usage)
 * [FAQs](#faqs)
 
@@ -50,7 +49,7 @@ dependencies:
 
 # [Examples][e0]
 
-## [Example 1 - Material - Zero Configuration][e1]
+## [Example 1 - Predefined Layouts][e1]
 
 Without any configuration, material layout by default is applied to your whole screen and ready to be used.
 
@@ -66,37 +65,28 @@ class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: HomePage()),
-    );
-  }
+  Widget build(BuildContext context) =>
+      const MaterialApp(
+        title: 'Flexi Example - Bootstrap',
+        home: FlexContainer(
+          // See also other predefined layouts:
+          // BootstrapLayout, CarbonLayout, RuleOfThirdsLayout and FluidLayout
+          layout: MaterialLayout(),
+          child: Scaffold(body: HomePage()),
+        ),
+      );
 }
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Center(child: Text(context.flexi.breakpoint.id.toString()));
-  }
+  Widget build(BuildContext context) =>
+      Center(child: Text(context.flexi.breakpoint.toString()));
 }
 ```
 
-## [Example 2 - Bootstrap][e2]
-
-```dart
-Widget build(BuildContext context) {
-  return const FlexLayout(
-    layout: BootstrapLayout(),
-    child: MaterialApp(
-      home: Scaffold(body: HomePage()),
-    ),
-  );
-}
-```
-
-## [Example 3 - Custom Layout][e3]
+## [Example 2 - Custom Layout][e2]
 
 To create your custom layout, you only need to
 extend [Layout](https://github.com/zenonine/flexi/blob/master/flexi/lib/src/layouts/layout.dart) class. Using your
@@ -144,9 +134,9 @@ class CustomLayout extends Layout<CustomBreakpointId, CustomBreakpoint> {
 }
 ```
 
-## [Example 4 - Material - Component Swapping][e4]
+## [Example 3 - Component Swapping][e3]
 
-For each breakpoint, use recommended layout from material guideline.
+In this example, each breakpoint uses a recommended layout from material guideline.
 
 * xs: modal drawer (app bar) + body + bottom app bar
 * sm: rail + body
@@ -159,10 +149,8 @@ For each breakpoint, use recommended layout from material guideline.
 
 [e0]: https://github.com/zenonine/flexi/tree/master/flexi/example/lib
 
-[e1]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_01_material_zero_configuration.dart
+[e1]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_01_predefined_layout.dart
 
-[e2]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_02_bootstrap.dart
+[e2]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_02_custom_layout.dart
 
-[e3]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_03_custom_layout.dart
-
-[e4]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_04_material_component_swapping.dart
+[e3]: https://github.com/zenonine/flexi/blob/master/flexi/example/lib/main_03_material_component_swapping.dart

@@ -190,12 +190,13 @@ class _TestApp extends StatelessWidget {
   final FlexValue<TestBreakpointId, String> flexTitle;
 
   @override
-  Widget build(BuildContext context) {
-    return FlexLayout(
-      layout: const TestLayout(),
-      child: MaterialApp(
-        home: flexTitle.build((context, value) => Text(value)),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        home: FlexContainer(
+          layout: const TestLayout(),
+          child: Builder(
+            builder: (context) =>
+                flexTitle.build((context, value) => Text(value)),
+          ),
+        ),
+      );
 }

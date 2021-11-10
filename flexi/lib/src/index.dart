@@ -11,7 +11,6 @@ export 'widgets/config/flex_config.dart';
 export 'widgets/config/flex_options.dart';
 export 'widgets/config/inherited_options.dart';
 export 'widgets/container/flex_container.dart';
+export 'widgets/container/flex_container_builder.dart';
 export 'widgets/container/inherited_container.dart';
 export 'widgets/flex_widget.dart';
-export 'widgets/layout/flex_layout.dart';
-export 'widgets/layout/inherited_layout.dart';

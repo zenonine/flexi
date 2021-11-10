@@ -64,6 +64,19 @@ void main() {
       }
     });
 
+    group('Body size', () {
+      const containerSize = Size(50, 70);
+      const expectedBodySize = Size(10, 10);
+      group('Given container size $containerSize', () {
+        test('Body size should be $expectedBodySize', () {
+          expect(
+            format.bodySize(containerSize),
+            expectedBodySize,
+          );
+        });
+      });
+    });
+
     group('Column width', () {
       const expectedColumnWidths = <int, double>{
         0: 0,

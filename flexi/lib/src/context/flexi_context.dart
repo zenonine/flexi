@@ -8,37 +8,6 @@ class Flexi {
 
   FlexOptions get options => InheritedOptions.of(context);
 
-  Size get containerSize {
-    final biggestSize =
-        context.internalFlexi.containerContext?.constraints.biggest;
-
-    if (biggestSize != null) {
-      return biggestSize;
-    }
-
-    // MediaQueryData.fromWindow() can solve the problem "No MediaQuery widget
-    // ancestor found.".
-    // But resize window doesn't update containerSize result.
-    // To update containerSize, we must use WidgetsBindingObserver.
-    // But WidgetsBindingObserver is not possible to use here.
-    // The only solution is to make sure [context] is inside a [WidgetsApp].
-    final mediaQueryData = MediaQuery.maybeOf(context);
-    assert(
-      mediaQueryData != null,
-      'Flexi needs access to MediaQueryData.'
-      ' WidgetsApp or its implementation, like MaterialApp or CupertinoApp,'
-      ' can provide the required MediaQueryData for Flexi.'
-      ' If you are using "context.flexi",'
-      ' make sure to use the context is below a WidgetsApp.'
-      ' If you are using "FlexContainer",'
-      ' make sure "FlexContainer" is below a WidgetsApp.',
-    );
-
-    return mediaQueryData!.size;
-  }
-
-  Layout get layout => InheritedLayout.of(context);
-
   Breakpoint? get maybeBreakpoint => layout.breakpoint(containerSize.width);
 
   /// Throws exception if container width is smaller than smallest breakpoint.
@@ -70,9 +39,11 @@ class Flexi {
 
   double get bodyHeight => format.bodyHeight(containerSize.height);
 
+  Size get bodySize => format.bodySize(containerSize);
+
   double get columnWidth => format.columnWidth(containerSize.width);
 
-  //region LayoutModule
+//region LayoutModule
 
   int get modules => format.modules(containerSize.height);
 
@@ -84,9 +55,9 @@ class Flexi {
 
   double get moduleHeight => format.module.height;
 
-  //endregion
+//endregion
 
-  //region Region size
+//region Region size
 
   double regionWidth([int columns = 1]) =>
       format.regionWidth(columns, containerSize.width);
@@ -96,9 +67,9 @@ class Flexi {
   Size regionSize({int columns = 1, int modules = 1}) =>
       Size(regionWidth(columns), regionHeight(modules));
 
-  //endregion
+//endregion
 
-  //region FlexValue
+//region FlexValue
 
   V value<BreakpointId extends Enum, V>(
     V startValue, [
@@ -110,6 +81,26 @@ class Flexi {
       FlexValue.builder(builder).get(context);
 
 //endregion
+
+//region Container context
+  Size get containerSize =>
+      context.internalFlexi.containerContext!.constraints.biggest;
+
+  Layout get layout => context.internalFlexi.containerContext!.layout;
+
+  String? get name => context.internalFlexi.containerContext!.name;
+
+  bool get isRoot => context.internalFlexi.containerContext!.isRoot;
+
+  Flexi? get parent {
+    final outerContext = context.internalFlexi.containerContext!.context;
+    final parentInnerContainerContext =
+        outerContext.internalFlexi.innerContainerContext;
+    return parentInnerContainerContext?.context.flexi;
+  }
+
+  Flexi get root => context.internalFlexi.rootContainerMarkerContext!.flexi;
+//endregion
 }
 
 /// Add context shortcut methods to use internally here.
@@ -117,6 +108,12 @@ class InternalFlexi extends Flexi {
   const InternalFlexi(BuildContext context) : super(context);
 
   ContainerContext? get containerContext => InheritedContainer.of(context);
+
+  InnerContainerContext? get innerContainerContext =>
+      InheritedInnerContainer.of(context);
+
+  BuildContext? get rootContainerMarkerContext =>
+      InheritedRootContainerMarker.of(context);
 }
 
 extension FlexiContext on BuildContext {

@@ -77,6 +77,9 @@ class LayoutFormat {
         : 0;
   }
 
+  Size bodySize(Size containerSize) =>
+      Size(bodyWidth(containerSize.width), bodyHeight(containerSize.height));
+
   int modules(double containerHeight) {
     if (module.height + module.gutter == 0) {
       return -1;

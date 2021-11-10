@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../index.dart';
+import '../../index.dart';
 
 void main() {
   group('Given there are no InheritedContainer', () {
@@ -22,7 +22,7 @@ void main() {
     });
   });
 
-  group('Given InheritedLayout exists', () {
+  group('Given InheritedContainer exists', () {
     testWidgets('ContainerContext should not be null', (tester) async {
       BuildContext? context;
       ContainerContext? expectedContainerContext;
@@ -31,12 +31,13 @@ void main() {
           child: LayoutBuilder(
             builder: (ctx, constraints) {
               expectedContainerContext = ContainerContext(
+                layout: const TestLayout(),
                 context: ctx,
                 constraints: constraints,
               );
 
               return InheritedContainer(
-                containerContext: expectedContainerContext!,
+                context: expectedContainerContext!,
                 child: Builder(
                   builder: (ctx) {
                     context = ctx;

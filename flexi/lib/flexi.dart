@@ -21,8 +21,8 @@ export 'src/index.dart'
         RuleOfThirdsBreakpoint,
         RuleOfThirdsLayout,
         FlexiContext,
-        FlexLayout,
         FlexContainer,
+        FlexContainerBuilder,
         FlexWidget,
         FlexValue,
         FlexValueBuilder;

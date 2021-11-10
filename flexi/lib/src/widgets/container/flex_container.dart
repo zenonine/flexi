@@ -5,10 +5,14 @@ import '../../index.dart';
 class FlexContainer extends StatefulWidget {
   const FlexContainer({
     Key? key,
+    this.name,
+    required this.layout,
     required this.child,
     this.fullSize = true,
   }) : super(key: key);
 
+  final String? name;
+  final Layout layout;
   final Widget child;
   final bool fullSize;
 
@@ -37,21 +41,45 @@ class FlexContainerState extends State<FlexContainer> {
 
   @override
   Widget build(BuildContext context) {
+    final isRoot = context.internalFlexi.rootContainerMarkerContext == null;
     return LayoutBuilder(
       builder: (context, constraints) {
+        final child = Stack(
+          children: [
+            Padding(
+              padding: getMargins(context),
+              child: widget.child,
+            ),
+            if (options.showOverlay) _FlexOverlay(options: options),
+          ],
+        );
+
         return InheritedContainer(
-          containerContext: ContainerContext(
+          context: ContainerContext(
+            name: widget.name,
+            isRoot: isRoot,
+            layout: widget.layout,
             context: context,
             constraints: constraints,
           ),
-          child: Stack(
-            children: [
-              Padding(
-                padding: getMargins(context),
-                child: widget.child,
-              ),
-              if (options.showOverlay) _FlexOverlay(options: options),
-            ],
+          child: Builder(
+            builder: (context) {
+              return InheritedInnerContainer(
+                context: InnerContainerContext(
+                  name: widget.name,
+                  isRoot: isRoot,
+                  context: context,
+                ),
+                child: isRoot
+                    ? Builder(
+                        builder: (context) => InheritedRootContainerMarker(
+                          context: context,
+                          child: child,
+                        ),
+                      )
+                    : child,
+              );
+            },
           ),
         );
       },
