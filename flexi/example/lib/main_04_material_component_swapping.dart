@@ -144,7 +144,7 @@ class AppBody extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Full screen: ${context.flexi.parent?.containerSize}'),
+              Text('Full screen: ${context.flexi.root.containerSize}'),
               Text('Content area: ${context.flexi.containerSize}'),
             ],
           ),
