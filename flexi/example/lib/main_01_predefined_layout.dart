@@ -10,7 +10,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const MaterialApp(
-        title: 'Flexi Example - Bootstrap',
+        title: 'Flexi Example - Predefined Layouts',
         home: FlexContainer(
           // See also other predefined layouts:
           // BootstrapLayout, CarbonLayout, RuleOfThirdsLayout and FluidLayout
