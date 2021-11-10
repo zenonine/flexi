@@ -22,7 +22,7 @@ void main() {
     });
   });
 
-  group('Given InheritedLayout exists', () {
+  group('Given InheritedContainer exists', () {
     testWidgets('ContainerContext should not be null', (tester) async {
       BuildContext? context;
       ContainerContext? expectedContainerContext;
