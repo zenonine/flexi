@@ -1,9 +1,10 @@
 ## 0.2.0
 
 * Close #22: Access parent and root flex container
-* Remove `FlexLayout`
-* Specifying `FlexContainer` is mandatory to use flexi
-* `FlexContainer` must now always specify its layout.
+* Breaking changes
+  * Remove `FlexLayout`
+  * Specifying `FlexContainer` is mandatory to use flexi
+  * `FlexContainer` must now always specify its layout.
 
 ## 0.1.5
 
