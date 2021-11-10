@@ -39,7 +39,7 @@ class App extends StatelessWidget {
     // md: rail + body + sidebar
     // lg: visible drawer + body + sidebar
     return MaterialApp(
-      title: 'Flexi Example - Material - Advanced',
+      title: 'Flexi Example - Component Swapping',
       home: FlexContainer(
         layout: const MaterialLayout(),
         child: FlexWidget(
