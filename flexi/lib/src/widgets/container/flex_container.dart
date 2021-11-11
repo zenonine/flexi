@@ -63,23 +63,21 @@ class FlexContainerState extends State<FlexContainer> {
             constraints: constraints,
           ),
           child: Builder(
-            builder: (context) {
-              return InheritedInnerContainer(
-                context: InnerContainerContext(
-                  name: widget.name,
-                  isRoot: isRoot,
-                  context: context,
-                ),
-                child: isRoot
-                    ? Builder(
-                        builder: (context) => InheritedRootContainerMarker(
-                          context: context,
-                          child: child,
-                        ),
-                      )
-                    : child,
-              );
-            },
+            builder: (context) => InheritedInnerContainer(
+              context: InnerContainerContext(
+                name: widget.name,
+                isRoot: isRoot,
+                context: context,
+              ),
+              child: isRoot
+                  ? Builder(
+                      builder: (context) => InheritedRootContainerMarker(
+                        context: context,
+                        child: child,
+                      ),
+                    )
+                  : child,
+            ),
           ),
         );
       },
@@ -226,21 +224,19 @@ class _FlexModulesOverlay extends StatelessWidget {
         if (modules > 0) ...[
           ...List.generate(
             modules,
-            (index) {
-              return Column(
-                children: [
+            (index) => Column(
+              children: [
+                SizedBox(
+                  height: context.flexi.format.module.height,
+                  child: _FlexModuleOverlay(options: options, index: index),
+                ),
+                if (index < modules - 1)
                   SizedBox(
-                    height: context.flexi.format.module.height,
-                    child: _FlexModuleOverlay(options: options, index: index),
+                    height: context.flexi.format.module.gutter,
+                    child: Container(color: moduleGutterColor),
                   ),
-                  if (index < modules - 1)
-                    SizedBox(
-                      height: context.flexi.format.module.gutter,
-                      child: Container(color: moduleGutterColor),
-                    ),
-                ],
-              );
-            },
+              ],
+            ),
           ),
 
           // Overlay for vertical extra region

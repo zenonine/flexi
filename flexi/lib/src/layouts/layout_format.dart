@@ -190,17 +190,15 @@ class LayoutFormat {
       module.hashCode;
 
   @override
-  String toString() {
-    return 'LayoutFormat{'
-        'columns: $columns,'
-        ' gutter: $gutter,'
-        ' leftMargin: $leftMargin,'
-        ' rightMargin: $rightMargin,'
-        ' topMargin: $topMargin,'
-        ' bottomMargin: $bottomMargin,'
-        ' module: $module'
-        '}';
-  }
+  String toString() => 'LayoutFormat{'
+      'columns: $columns,'
+      ' gutter: $gutter,'
+      ' leftMargin: $leftMargin,'
+      ' rightMargin: $rightMargin,'
+      ' topMargin: $topMargin,'
+      ' bottomMargin: $bottomMargin,'
+      ' module: $module'
+      '}';
 }
 
 @immutable
@@ -235,7 +233,6 @@ class LayoutModule {
   int get hashCode => baseline.hashCode ^ rows.hashCode ^ gutter.hashCode;
 
   @override
-  String toString() {
-    return 'LayoutModule{baseline: $baseline, rows: $rows, gutter: $gutter}';
-  }
+  String toString() =>
+      'LayoutModule{baseline: $baseline, rows: $rows, gutter: $gutter}';
 }

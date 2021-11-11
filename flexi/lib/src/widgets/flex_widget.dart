@@ -9,7 +9,7 @@ class FlexWidget<BreakpointId extends Enum> extends StatelessWidget {
     Map<BreakpointId, WidgetBuilder>? flexWidgets,
     Flexi? flexiContext,
   }) : this._value(
-    key: key,
+          key: key,
           flexValue: FlexValue(
             startWidget ?? (_) => const SizedBox.shrink(),
             flexWidgets,
@@ -21,8 +21,7 @@ class FlexWidget<BreakpointId extends Enum> extends StatelessWidget {
     Key? key,
     required FlexValue<BreakpointId, WidgetBuilder> flexValue,
     this.flexiContext,
-  })
-      : _flexValue = flexValue,
+  })  : _flexValue = flexValue,
         super(key: key);
 
   final FlexValue<BreakpointId, WidgetBuilder> _flexValue;

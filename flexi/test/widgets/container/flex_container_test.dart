@@ -151,28 +151,28 @@ class _TestContainerContext extends StatelessWidget {
   final _OnBuild onBuild;
 
   @override
-  Widget build(BuildContext topContext) {
-    return MaterialApp(
-      home: UnconstrainedBox(
-        child: SizedBox.square(
-          dimension: 200,
-          child: FlexContainer(
-            layout: const TestLayout(),
-            child: Builder(
-              builder: (middleContext) => UnconstrainedBox(
-                child: SizedBox.square(
-                  dimension: 100,
-                  child: FlexContainer(
-                    layout: const TestLayout(),
-                    child: Builder(
-                      builder: (bottomContext) {
-                        onBuild(
-                          topContext: topContext,
-                          middleContext: middleContext,
-                          bottomContext: bottomContext,
-                        );
-                        return Container();
-                      },
+  Widget build(BuildContext topContext) => MaterialApp(
+        home: UnconstrainedBox(
+          child: SizedBox.square(
+            dimension: 200,
+            child: FlexContainer(
+              layout: const TestLayout(),
+              child: Builder(
+                builder: (middleContext) => UnconstrainedBox(
+                  child: SizedBox.square(
+                    dimension: 100,
+                    child: FlexContainer(
+                      layout: const TestLayout(),
+                      child: Builder(
+                        builder: (bottomContext) {
+                          onBuild(
+                            topContext: topContext,
+                            middleContext: middleContext,
+                            bottomContext: bottomContext,
+                          );
+                          return Container();
+                        },
+                      ),
                     ),
                   ),
                 ),
@@ -180,9 +180,7 @@ class _TestContainerContext extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class _TestMargins extends StatelessWidget {
