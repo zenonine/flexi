@@ -112,7 +112,9 @@ class _AppRailState extends State<AppRail> {
         labelType: NavigationRailLabelType.all,
         destinations: const [
           NavigationRailDestination(
-              icon: Icon(Icons.home), label: Text('Home')),
+            icon: Icon(Icons.home),
+            label: Text('Home'),
+          ),
           NavigationRailDestination(
             icon: Icon(Icons.favorite),
             label: Text('Favorite'),
