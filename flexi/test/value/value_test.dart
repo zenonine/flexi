@@ -195,7 +195,7 @@ class _TestApp extends StatelessWidget {
           layout: const TestLayout(),
           child: Builder(
             builder: (context) =>
-                flexTitle.build((context, value) => Text(value)),
+                flexTitle.build(builder: (context, value) => Text(value)),
           ),
         ),
       );

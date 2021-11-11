@@ -39,7 +39,7 @@ class App extends StatelessWidget {
     // md: rail + body + sidebar
     // lg: visible drawer + body + sidebar
     return MaterialApp(
-      title: 'Flexi Example - Material - Advanced',
+      title: 'Flexi Example - Component Swapping',
       home: FlexContainer(
         layout: const MaterialLayout(),
         child: FlexWidget(
@@ -104,22 +104,23 @@ class _AppRailState extends State<AppRail> {
   int _selectedIndex = 0;
 
   @override
-  Widget build(BuildContext context) {
-    return NavigationRail(
-      selectedIndex: _selectedIndex,
-      onDestinationSelected: (index) => setState(() {
-        _selectedIndex = index;
-      }),
-      labelType: NavigationRailLabelType.all,
-      destinations: const [
-        NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
-        NavigationRailDestination(
-          icon: Icon(Icons.favorite),
-          label: Text('Favorite'),
-        ),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => NavigationRail(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: (index) => setState(() {
+          _selectedIndex = index;
+        }),
+        labelType: NavigationRailLabelType.all,
+        destinations: const [
+          NavigationRailDestination(
+            icon: Icon(Icons.home),
+            label: Text('Home'),
+          ),
+          NavigationRailDestination(
+            icon: Icon(Icons.favorite),
+            label: Text('Favorite'),
+          ),
+        ],
+      );
 }
 
 class AppSidebar extends StatelessWidget {
@@ -135,21 +136,19 @@ class AppBody extends StatelessWidget {
   const AppBody({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return FlexConfig(
-      showOverlay: true,
-      child: FlexContainerBuilder(
-        layout: const MaterialLayout(),
-        builder: (context) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Full screen: ${context.flexi.root.containerSize}'),
-              Text('Content area: ${context.flexi.containerSize}'),
-            ],
+  Widget build(BuildContext context) => FlexConfig(
+        showOverlay: true,
+        child: FlexContainerBuilder(
+          layout: const MaterialLayout(),
+          builder: (context) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Full screen: ${context.flexi.root.containerSize}'),
+                Text('Content area: ${context.flexi.containerSize}'),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

@@ -40,14 +40,11 @@ abstract class Breakpoint<BreakpointId extends Enum>
       other != null && minWidth == other.minWidth;
 
   @override
-  int compareTo(Breakpoint<BreakpointId>? other) {
-    return eq(other) ? 0 : (this > other ? 1 : -1);
-  }
+  int compareTo(Breakpoint<BreakpointId>? other) =>
+      eq(other) ? 0 : (this > other ? 1 : -1);
 
   @override
-  String toString() {
-    return 'Breakpoint{id: $id, minWidth: $minWidth}';
-  }
+  String toString() => 'Breakpoint{id: $id, minWidth: $minWidth}';
 }
 
 @immutable

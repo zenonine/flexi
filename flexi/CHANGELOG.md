@@ -1,10 +1,15 @@
+## 0.3.0
+
+* Close #27: Allow FlexWidget to change container context.
+* Breaking change: `FlexValue.build` method requires parameter name.
+
 ## 0.2.0
 
 * Close #22: Access parent and root flex container
 * Breaking changes
   * Remove `FlexLayout`
-  * Specifying `FlexContainer` is mandatory to use flexi
-  * `FlexContainer` must now always specify its layout.
+  * Specifying `FlexContainer` is mandatory to use flexi for children widgets.
+  * `FlexContainer` must always specify its layout.
 
 ## 0.1.5
 

@@ -15,9 +15,8 @@ class InheritedContainer extends InheritedWidget {
       context.dependOnInheritedWidgetOfExactType<InheritedContainer>()?.context;
 
   @override
-  bool updateShouldNotify(covariant InheritedContainer oldWidget) {
-    return context != oldWidget.context;
-  }
+  bool updateShouldNotify(covariant InheritedContainer oldWidget) =>
+      context != oldWidget.context;
 }
 
 class InheritedInnerContainer extends InheritedWidget {
@@ -34,9 +33,8 @@ class InheritedInnerContainer extends InheritedWidget {
       ?.context;
 
   @override
-  bool updateShouldNotify(covariant InheritedInnerContainer oldWidget) {
-    return context != oldWidget.context;
-  }
+  bool updateShouldNotify(covariant InheritedInnerContainer oldWidget) =>
+      context != oldWidget.context;
 }
 
 class InheritedRootContainerMarker extends InheritedWidget {
@@ -53,7 +51,6 @@ class InheritedRootContainerMarker extends InheritedWidget {
       ?.context;
 
   @override
-  bool updateShouldNotify(covariant InheritedRootContainerMarker oldWidget) {
-    return context != oldWidget.context;
-  }
+  bool updateShouldNotify(covariant InheritedRootContainerMarker oldWidget) =>
+      context != oldWidget.context;
 }

@@ -14,7 +14,7 @@ abstract class FlexValue<BreakpointId extends Enum, V> {
 
   V get(BuildContext context);
 
-  Widget build(FlexWidgetBuilder<V> builder);
+  Widget build({required FlexWidgetBuilder<V> builder, Flexi? flexiContext});
 }
 
 abstract class BaseFlexValue<BreakpointId extends Enum, V>
@@ -23,9 +23,11 @@ abstract class BaseFlexValue<BreakpointId extends Enum, V>
 
   /// Build widget from flex value.
   @override
-  Widget build(FlexWidgetBuilder<V> builder) {
-    return Builder(builder: (context) => builder(context, get(context)));
-  }
+  Widget build({required FlexWidgetBuilder<V> builder, Flexi? flexiContext}) =>
+      Builder(
+        builder: (context) =>
+            builder(context, get(flexiContext?.context ?? context)),
+      );
 }
 
 class BreakpointFlexValue<BreakpointId extends Enum, V>
@@ -61,9 +63,8 @@ class BreakpointFlexValue<BreakpointId extends Enum, V>
         .where((bp) => flexValues!.keys.contains(bp.id))
         .toList(growable: false);
 
-    final flexBreakpoint = breakpoints.reversed.firstWhereOrNull((bp) {
-      return bp <= breakpoint;
-    });
+    final flexBreakpoint =
+        breakpoints.reversed.firstWhereOrNull((bp) => bp <= breakpoint);
 
     return flexBreakpoint == null
         ? startValue

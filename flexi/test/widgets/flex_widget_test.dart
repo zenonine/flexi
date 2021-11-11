@@ -42,17 +42,15 @@ class _TestApp extends StatelessWidget {
   const _TestApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FlexContainer(
-        layout: const TestLayout(),
-        child: FlexWidget(
-          startWidget: (_) => const Text('xs/sm'),
-          flexWidgets: {
-            TestBreakpointId.md: (_) => const Text('md/lg'),
-          },
+  Widget build(BuildContext context) => MaterialApp(
+        home: FlexContainer(
+          layout: const TestLayout(),
+          child: FlexWidget(
+            startWidget: (_) => const Text('xs/sm'),
+            flexWidgets: {
+              TestBreakpointId.md: (_) => const Text('md/lg'),
+            },
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

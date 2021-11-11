@@ -58,16 +58,14 @@ class FlexOptions {
       style.hashCode;
 
   @override
-  String toString() {
-    return 'FlexOptions{'
-        'showOverlay: $showOverlay,'
-        ' showMargins: $showMargins,'
-        ' showColumns: $showColumns,'
-        ' showModules: $showModules,'
-        ' showBaselines: $showBaselines,'
-        ' style: $style'
-        '}';
-  }
+  String toString() => 'FlexOptions{'
+      'showOverlay: $showOverlay,'
+      ' showMargins: $showMargins,'
+      ' showColumns: $showColumns,'
+      ' showModules: $showModules,'
+      ' showBaselines: $showBaselines,'
+      ' style: $style'
+      '}';
 }
 
 @immutable
@@ -133,15 +131,13 @@ class FlexOverlayStyle {
       baselineColor.hashCode;
 
   @override
-  String toString() {
-    return 'FlexOverlayStyle{'
-        'marginColor: $marginColor,'
-        ' columnColor: $columnColor,'
-        ' columnBorderColor: $columnBorderColor,'
-        ' gutterColor: $gutterColor,'
-        ' moduleColor: $moduleColor,'
-        ' moduleGutterColor: $moduleGutterColor,'
-        ' baselineColor: $baselineColor'
-        '}';
-  }
+  String toString() => 'FlexOverlayStyle{'
+      'marginColor: $marginColor,'
+      ' columnColor: $columnColor,'
+      ' columnBorderColor: $columnBorderColor,'
+      ' gutterColor: $gutterColor,'
+      ' moduleColor: $moduleColor,'
+      ' moduleGutterColor: $moduleGutterColor,'
+      ' baselineColor: $baselineColor'
+      '}';
 }

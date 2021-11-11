@@ -47,11 +47,13 @@ dependencies:
   flexi: <latest-version>
 ```
 
-# [Examples][e0]
+# Examples
 
-## [Example 1 - Predefined Layouts][e1]
+[Source code][e0]
 
-Without any configuration, material layout by default is applied to your whole screen and ready to be used.
+## Example 1 - Predefined Layouts
+
+[Source code][e1]
 
 ```dart
 import 'package:flexi/flexi.dart';
@@ -67,7 +69,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       const MaterialApp(
-        title: 'Flexi Example - Bootstrap',
+        title: 'Flexi Example - Predefined Layouts',
         home: FlexContainer(
           // See also other predefined layouts:
           // BootstrapLayout, CarbonLayout, RuleOfThirdsLayout and FluidLayout
@@ -86,7 +88,9 @@ class HomePage extends StatelessWidget {
 }
 ```
 
-## [Example 2 - Custom Layout][e2]
+## Example 2 - Custom Layout
+
+[Source code][e2]
 
 To create your custom layout, you only need to
 extend [Layout](https://github.com/zenonine/flexi/blob/master/flexi/lib/src/layouts/layout.dart) class. Using your
@@ -134,7 +138,9 @@ class CustomLayout extends Layout<CustomBreakpointId, CustomBreakpoint> {
 }
 ```
 
-## [Example 3 - Component Swapping][e3]
+## Example 3 - Component Swapping
+
+[Source code][e3]
 
 In this example, each breakpoint uses a recommended layout from material guideline.
 

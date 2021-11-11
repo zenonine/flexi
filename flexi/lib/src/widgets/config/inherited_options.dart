@@ -11,15 +11,11 @@ class InheritedOptions extends InheritedWidget {
 
   final FlexOptions options;
 
-  static FlexOptions of(BuildContext context) {
-    return context
-            .dependOnInheritedWidgetOfExactType<InheritedOptions>()
-            ?.options ??
-        const FlexOptions();
-  }
+  static FlexOptions of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<InheritedOptions>()?.options ??
+      const FlexOptions();
 
   @override
-  bool updateShouldNotify(covariant InheritedOptions oldWidget) {
-    return options != oldWidget.options;
-  }
+  bool updateShouldNotify(covariant InheritedOptions oldWidget) =>
+      options != oldWidget.options;
 }
