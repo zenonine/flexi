@@ -167,7 +167,7 @@ class LayoutFormat {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is LayoutFormat &&
+      other is LayoutFormat &&
           runtimeType == other.runtimeType &&
           columns == other.columns &&
           gutter == other.gutter &&
