@@ -65,7 +65,7 @@ class FlexContainerState extends State<FlexContainer> {
           child: Builder(
             builder: (context) => InheritedInnerContainer(
               context: InnerContainerContext(
-                    name: widget.name,
+                name: widget.name,
                 isRoot: isRoot,
                 context: context,
               ),
