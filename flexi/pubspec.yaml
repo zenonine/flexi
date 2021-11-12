@@ -1,6 +1,6 @@
 name: flexi
 description: Beside Material and Bootstrap breakpoint systems, Flexi allows to create your own layout easily for different grid types Manuscript, Columns, Modular and Baseline.
-version: 0.3.0
+version: 0.3.1
 homepage: https://github.com/zenonine/flexi
 
 environment:

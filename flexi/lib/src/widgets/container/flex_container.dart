@@ -154,25 +154,31 @@ class _FlexColumnsOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final columns = context.flexi.columns;
     final columnColor = options.style.columnColor;
-    final gutterColor = options.style.gutterColor;
     final columnBorderColor = options.style.columnBorderColor;
-    final lastColumnIndex = context.flexi.columns - 1;
+    final lastColumnIndex = columns - 1;
 
-    return Row(
+    final gutter = context.flexi.gutter;
+    final gutterColor = options.style.gutterColor;
+
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      primary: false,
+      physics: const NeverScrollableScrollPhysics(),
       children: List.generate(
-        context.flexi.columns,
+        columns,
         (index) {
           Widget? gutterBox;
-          if (context.flexi.gutter > 0 && index < lastColumnIndex) {
+          if (gutter > 0 && index < lastColumnIndex) {
             gutterBox = SizedBox(
-              width: context.flexi.gutter,
+              width: gutter,
               child: Container(color: gutterColor),
             );
           }
 
           Border? columnBorder;
-          if (context.flexi.gutter <= 0) {
+          if (gutter <= 0) {
             final columnBorderSide =
                 BorderSide(color: columnBorderColor, width: 0.5);
             columnBorder = Border.symmetric(vertical: columnBorderSide);

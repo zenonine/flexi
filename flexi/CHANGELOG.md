@@ -1,3 +1,7 @@
+## 0.3.1
+
+Close #25: Overflow error when Overlay is bigger than container width
+
 ## 0.3.0
 
 * Close #27: Allow FlexWidget to change container context.
