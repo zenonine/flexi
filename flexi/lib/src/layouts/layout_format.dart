@@ -63,18 +63,14 @@ class LayoutFormat {
   double bodyWidth(double containerWidth) {
     _assertContainerWidth(containerWidth);
 
-    return containerWidth > 0
-        ? max(0, containerWidth - leftMargin - rightMargin)
-        : 0;
+    return containerWidth > 0 ? max(0, containerWidth - margins.horizontal) : 0;
   }
 
   /// Returns the height of body region, which doesn't contain margins.
   double bodyHeight(double containerHeight) {
     _assertContainerHeight(containerHeight);
 
-    return containerHeight > 0
-        ? max(0, containerHeight - topMargin - bottomMargin)
-        : 0;
+    return containerHeight > 0 ? max(0, containerHeight - margins.vertical) : 0;
   }
 
   Size bodySize(Size containerSize) =>
@@ -113,7 +109,9 @@ class LayoutFormat {
     final bodyWidth = this.bodyWidth(containerWidth);
     if (bodyWidth > 0) {
       final totalGutterWidth = (columns - 1) * gutter;
-      return (bodyWidth - totalGutterWidth) / columns;
+      return bodyWidth > totalGutterWidth
+          ? (bodyWidth - totalGutterWidth) / columns
+          : 0;
     }
 
     return 0;
@@ -169,34 +167,22 @@ class LayoutFormat {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LayoutFormat &&
+          other is LayoutFormat &&
           runtimeType == other.runtimeType &&
           columns == other.columns &&
           gutter == other.gutter &&
-          leftMargin == other.leftMargin &&
-          rightMargin == other.rightMargin &&
-          topMargin == other.topMargin &&
-          bottomMargin == other.bottomMargin &&
+          margins == other.margins &&
           module == other.module;
 
   @override
   int get hashCode =>
-      columns.hashCode ^
-      gutter.hashCode ^
-      leftMargin.hashCode ^
-      rightMargin.hashCode ^
-      topMargin.hashCode ^
-      bottomMargin.hashCode ^
-      module.hashCode;
+      columns.hashCode ^ gutter.hashCode ^ margins.hashCode ^ module.hashCode;
 
   @override
   String toString() => 'LayoutFormat{'
       'columns: $columns,'
       ' gutter: $gutter,'
-      ' leftMargin: $leftMargin,'
-      ' rightMargin: $rightMargin,'
-      ' topMargin: $topMargin,'
-      ' bottomMargin: $bottomMargin,'
+      ' margins: $margins,'
       ' module: $module'
       '}';
 }

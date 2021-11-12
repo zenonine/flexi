@@ -81,6 +81,7 @@ void main() {
       const expectedColumnWidths = <int, double>{
         0: 0,
         10: 0,
+        50: 0,
         70: 0,
         71: 0.25,
         78: 2,
