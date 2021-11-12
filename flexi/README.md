@@ -4,7 +4,9 @@
   </a>
 
   <p>
-    Beside Material and Bootstrap breakpoint systems, Flexi allows to create your own layout easily for different grid types: Manuscript, Columns, Modular and Baseline.
+    Beside predefined breakpoint systems, such as Material,
+    you can create your fixed and responsive layout for different grid types:
+    Manuscript, Columns, Modular and Baseline.
   </p>
 
   <div>
@@ -25,7 +27,7 @@
 
 ---
 
-* [Flutter/Dart compatibility](#flutter-dart-compatibility)
+* [Flutter/Dart compatibility](#flutterdart-compatibility)
 * [Installing - pubspec.yaml](#installing---pubspecyaml)
 * [Examples](#examples)
   * [Example 1 - Predefined Layouts](#example-1---predefined-layouts)
