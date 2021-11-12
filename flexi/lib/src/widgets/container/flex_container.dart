@@ -39,21 +39,21 @@ class FlexContainerState extends State<FlexContainer> {
   EdgeInsets getMargins(BuildContext context) =>
       widget.fullSize ? EdgeInsets.zero : getFormatMargins(context);
 
+  Widget _buildChild(BuildContext context) => Stack(
+        children: [
+          Padding(
+            padding: getMargins(context),
+            child: widget.child,
+          ),
+          if (options.showOverlay) _FlexOverlay(options: options),
+        ],
+      );
+
   @override
   Widget build(BuildContext context) {
     final isRoot = context.internalFlexi.rootContainerMarkerContext == null;
     return LayoutBuilder(
       builder: (context, constraints) {
-        final child = Stack(
-          children: [
-            Padding(
-              padding: getMargins(context),
-              child: widget.child,
-            ),
-            if (options.showOverlay) _FlexOverlay(options: options),
-          ],
-        );
-
         return InheritedContainer(
           context: ContainerContext(
             name: widget.name,
@@ -65,7 +65,7 @@ class FlexContainerState extends State<FlexContainer> {
           child: Builder(
             builder: (context) => InheritedInnerContainer(
               context: InnerContainerContext(
-                name: widget.name,
+                    name: widget.name,
                 isRoot: isRoot,
                 context: context,
               ),
@@ -73,10 +73,10 @@ class FlexContainerState extends State<FlexContainer> {
                   ? Builder(
                       builder: (context) => InheritedRootContainerMarker(
                         context: context,
-                        child: child,
+                        child: _buildChild(context),
                       ),
                     )
-                  : child,
+                  : _buildChild(context),
             ),
           ),
         );
