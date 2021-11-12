@@ -1,6 +1,10 @@
+## 0.3.2
+
+Fix #33: Wrong margins for flex container
+
 ## 0.3.1
 
-Close #25: Overflow error when Overlay is bigger than container width
+Fix #25: Overflow error when Overlay is bigger than container width
 
 ## 0.3.0
 
@@ -17,7 +21,7 @@ Close #25: Overflow error when Overlay is bigger than container width
 
 ## 0.1.5
 
-* Close #10: Overlay column dividers are not visible if gutter is zero.
+* Fix #10: Overlay column dividers are not visible if gutter is zero.
 
 ## 0.1.4
 
@@ -25,7 +29,7 @@ Close #25: Overflow error when Overlay is bigger than container width
 
 ## 0.1.3
 
-* Close #10: Overlay column dividers are not visible if gutter is zero.
+* Fix #10: Overlay column dividers are not visible if gutter is zero.
 
 ## 0.1.2
 
