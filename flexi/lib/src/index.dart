@@ -1,6 +1,7 @@
 export 'context/container_context.dart';
 export 'context/flexi_context.dart';
 export 'layouts/bootstrap_layout.dart';
+export 'layouts/carbon_layout.dart';
 export 'layouts/fluid_layout.dart';
 export 'layouts/layout.dart';
 export 'layouts/layout_format.dart';

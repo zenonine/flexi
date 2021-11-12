@@ -20,9 +20,16 @@ export 'src/index.dart'
         RuleOfThirdsBreakpointId,
         RuleOfThirdsBreakpoint,
         RuleOfThirdsLayout,
+        CarbonBreakpointId,
+        CarbonBreakpoint,
+        CarbonLayout,
+        NarrowCarbonLayout,
+        CondensedCarbonLayout,
         FlexiContext,
+        Flexi,
         FlexContainer,
         FlexContainerBuilder,
         FlexWidget,
         FlexValue,
-        FlexValueBuilder;
+        FlexValueBuilder,
+        FlexWidgetBuilder;

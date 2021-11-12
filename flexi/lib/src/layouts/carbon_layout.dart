@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:meta/meta.dart';
+
 import '../index.dart';
 
 enum CarbonBreakpointId { sm, md, lg, xl, max }
@@ -12,6 +14,7 @@ class CarbonBreakpoint extends Breakpoint<CarbonBreakpointId> {
 }
 
 /// See https://www.carbondesignsystem.com/guidelines/2x-grid/implementation
+@experimental
 class CarbonLayout extends Layout<CarbonBreakpointId, CarbonBreakpoint> {
   const CarbonLayout();
 
@@ -26,8 +29,7 @@ class CarbonLayout extends Layout<CarbonBreakpointId, CarbonBreakpoint> {
       });
 
   @override
-  LayoutFormat format(
-    double containerWidth, [
+  LayoutFormat format(double containerWidth, [
     double containerHeight = double.maxFinite,
   ]) {
     final horizontalMargin = leftMargin(containerWidth);
@@ -70,23 +72,23 @@ class CarbonLayout extends Layout<CarbonBreakpointId, CarbonBreakpoint> {
   }
 }
 
+@experimental
 class NarrowCarbonLayout extends CarbonLayout {
   const NarrowCarbonLayout();
 
   @override
-  LayoutFormat format(
-    double containerWidth, [
+  LayoutFormat format(double containerWidth, [
     double containerHeight = double.maxFinite,
   ]) =>
       super.format(containerWidth, containerHeight).copy(gutter: 16);
 }
 
+@experimental
 class CondensedCarbonLayout extends CarbonLayout {
   const CondensedCarbonLayout();
 
   @override
-  LayoutFormat format(
-    double containerWidth, [
+  LayoutFormat format(double containerWidth, [
     double containerHeight = double.maxFinite,
   ]) =>
       super.format(containerWidth, containerHeight).copy(gutter: 1);
