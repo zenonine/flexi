@@ -103,12 +103,11 @@ void main() {
     group('Region width', () {
       const containerWidth = 78.0;
       group('Given container width $containerWidth', () {
-        const expectedColumnWidth = 2.0;
         final expectedRegionWidths = <int, double>{
           0: 0,
-          1: 0 * format.module.gutter + 1 * expectedColumnWidth,
-          2: 1 * format.module.gutter + 2 * expectedColumnWidth,
-          3: 2 * format.module.gutter + 3 * expectedColumnWidth,
+          1: 2,
+          2: 14,
+          3: 26,
         };
         for (final expectedEntry in expectedRegionWidths.entries) {
           final columns = expectedEntry.key;
@@ -140,6 +139,50 @@ void main() {
           expect(
             format.regionHeight(modules),
             expectedRegionHeight,
+          );
+        });
+      }
+    });
+
+    group('Region space width', () {
+      const containerWidth = 78.0;
+      group('Given container width $containerWidth', () {
+        final expectedRegionSpaceWidths = <int, double>{
+          0: 10,
+          1: 22,
+          2: 34,
+          3: 46,
+        };
+        for (final expectedEntry in expectedRegionSpaceWidths.entries) {
+          final columns = expectedEntry.key;
+          final expectedRegionSpaceWidth = expectedEntry.value;
+          test(
+              'Region space width of $columns columns'
+              ' should be $expectedRegionSpaceWidth', () {
+            expect(
+              format.regionSpaceWidth(columns, containerWidth),
+              expectedRegionSpaceWidth,
+            );
+          });
+        }
+      });
+    });
+
+    group('Region space height', () {
+      const expectedRegionSpaceHeights = <int, double>{
+        0: 10,
+        1: 60,
+        2: 110,
+      };
+      for (final expectEntry in expectedRegionSpaceHeights.entries) {
+        final modules = expectEntry.key;
+        final expectedRegionSpaceHeight = expectEntry.value;
+        test(
+            'Region space height of $modules modules'
+            ' should be $expectedRegionSpaceHeight', () {
+          expect(
+            format.regionSpaceHeight(modules),
+            expectedRegionSpaceHeight,
           );
         });
       }

@@ -1,9 +1,11 @@
 ## 0.4.0
 
-Breaking change: split material design breakpoint `sm` into 2 breakpoints:
-
-* `sm8` for 8 columns layout
-* `sm12` for 12 columns layout
+* Add new methods: `context.flexi.regionSpaceWidth` and `context.flexi.regionSpaceHeight`
+* Breaking changes:
+  * Change method signatures of `context.flexi.regionWidth` and `context.flexi.regionHeight`
+  * Split material design breakpoint `sm` into 2 breakpoints:
+    * `sm8` for 8 columns layout
+    * `sm12` for 12 columns layout
 
 ## 0.3.2
 

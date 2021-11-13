@@ -59,30 +59,21 @@ class Flexi {
 
 //region Region size
 
-  double regionWidth([int columns = 1]) =>
+  double regionWidth({int columns = 1}) =>
       format.regionWidth(columns, containerSize.width);
 
-  double regionHeight([int modules = 1]) => format.regionHeight(modules);
+  double regionHeight({int modules = 1}) => format.regionHeight(modules);
 
-  Size regionSize({int columns = 1, int modules = 1}) =>
-      Size(regionWidth(columns), regionHeight(modules));
+  double regionSpaceWidth({int columns = 0, bool isEdge = false}) =>
+      format.regionSpaceWidth(columns, containerSize.width, isEdge: isEdge);
 
-//endregion
-
-//region FlexValue
-
-  V value<BreakpointId extends Enum, V>(
-    V startValue, [
-    Map<BreakpointId, V>? flexValues,
-  ]) =>
-      FlexValue(startValue, flexValues).get(context);
-
-  V valueBuilder<V>(FlexValueBuilder<V> builder) =>
-      FlexValue.builder(builder).get(context);
+  double regionSpaceHeight({int modules = 0, bool isTop = false}) =>
+      format.regionSpaceHeight(modules, isTop: isTop);
 
 //endregion
 
 //region Container context
+
   Size get containerSize =>
       context.internalFlexi.containerContext!.constraints.biggest;
 
@@ -100,6 +91,7 @@ class Flexi {
   }
 
   Flexi get root => context.internalFlexi.rootContainerMarkerContext!.flexi;
+
 //endregion
 }
 

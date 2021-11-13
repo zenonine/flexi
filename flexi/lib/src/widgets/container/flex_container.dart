@@ -65,7 +65,7 @@ class FlexContainerState extends State<FlexContainer> {
           child: Builder(
             builder: (context) => InheritedInnerContainer(
               context: InnerContainerContext(
-                    name: widget.name,
+                name: widget.name,
                 isRoot: isRoot,
                 context: context,
               ),
@@ -219,7 +219,8 @@ class _FlexModulesOverlay extends StatelessWidget {
 
     final bodyHeight = context.flexi.bodyHeight;
     final moduleGutter = context.flexi.moduleGutter;
-    final extraHeight = bodyHeight - context.flexi.regionHeight(modules);
+    final extraHeight =
+        bodyHeight - context.flexi.regionHeight(modules: modules);
 
     return Column(
       children: [

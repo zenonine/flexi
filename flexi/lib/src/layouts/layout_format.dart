@@ -118,11 +118,7 @@ class LayoutFormat {
   }
 
   double regionWidth(int columns, double containerWidth) {
-    assert(columns >= 0, 'Columns ($columns) should not be a negative number.');
-    assert(
-      columns < double.infinity,
-      'Columns ($columns) should be a finite number.',
-    );
+    _assertColumns(columns);
     _assertContainerWidth(containerWidth);
 
     return columns > 0
@@ -131,15 +127,51 @@ class LayoutFormat {
   }
 
   double regionHeight([int modules = 1]) {
+    _assertModules(modules);
+
+    return modules > 0
+        ? modules * module.height + (modules - 1) * module.gutter
+        : 0;
+  }
+
+  double regionSpaceWidth(
+    int columns,
+    double containerWidth, {
+    bool isEdge = false,
+  }) {
+    _assertColumns(columns);
+    _assertContainerWidth(containerWidth);
+
+    final extraGutterCount = isEdge ? 0 : 1;
+    return columns * columnWidth(containerWidth) +
+        (columns + extraGutterCount) * gutter;
+  }
+
+  double regionSpaceHeight(
+    int modules, {
+    bool isTop = false,
+  }) {
+    _assertModules(modules);
+
+    final extraGutterCount = isTop ? 0 : 1;
+    return modules * module.height +
+        (modules + extraGutterCount) * module.gutter;
+  }
+
+  void _assertColumns(int columns) {
+    assert(columns >= 0, 'Columns ($columns) should not be a negative number.');
+    assert(
+      columns < double.infinity,
+      'Columns ($columns) should be a finite number.',
+    );
+  }
+
+  void _assertModules(int modules) {
     assert(modules >= 0, 'Modules ($modules) should not be a negative number.');
     assert(
       modules < double.infinity,
       'Modules ($modules) should be a finite number.',
     );
-
-    return modules > 0
-        ? modules * module.height + (modules - 1) * module.gutter
-        : 0;
   }
 
   void _assertContainerWidth(double containerWidth) {

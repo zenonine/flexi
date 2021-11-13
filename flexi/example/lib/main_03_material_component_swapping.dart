@@ -63,7 +63,7 @@ class App extends StatelessWidget {
             ),
           ),
           flexWidgets: {
-            MaterialBreakpointId.sm: (_) => Scaffold(
+            MaterialBreakpointId.sm8: (_) => Scaffold(
                   body: Row(
                     children: [
                       _buildRailOrMenu(),
