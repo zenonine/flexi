@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import '../index.dart';
 
-enum MaterialBreakpointId { xs, sm, md, lg }
+enum MaterialBreakpointId { xs, sm8, sm12, md, lg }
 
 class MaterialBreakpoint extends Breakpoint<MaterialBreakpointId> {
   const MaterialBreakpoint({
@@ -18,7 +18,8 @@ class MaterialLayout extends Layout<MaterialBreakpointId, MaterialBreakpoint> {
   SplayTreeSet<MaterialBreakpoint> get breakpoints =>
       SplayTreeSet.from(<MaterialBreakpoint>{
         const MaterialBreakpoint(id: MaterialBreakpointId.xs, minWidth: 0),
-        const MaterialBreakpoint(id: MaterialBreakpointId.sm, minWidth: 600),
+        const MaterialBreakpoint(id: MaterialBreakpointId.sm8, minWidth: 600),
+        const MaterialBreakpoint(id: MaterialBreakpointId.sm12, minWidth: 905),
         const MaterialBreakpoint(id: MaterialBreakpointId.md, minWidth: 1240),
         const MaterialBreakpoint(id: MaterialBreakpointId.lg, minWidth: 1440),
       });
@@ -44,11 +45,9 @@ class MaterialLayout extends Layout<MaterialBreakpointId, MaterialBreakpoint> {
       case null:
       case MaterialBreakpointId.xs:
         return 4;
-      case MaterialBreakpointId.sm:
-        const maxBodySize = 840.0;
-        const fixedMargin = 32.0;
-        const maxFixedMarginSize = maxBodySize + 2 * fixedMargin;
-        return containerWidth <= maxFixedMarginSize ? 8 : 12;
+      case MaterialBreakpointId.sm8:
+        return 8;
+      case MaterialBreakpointId.sm12:
       case MaterialBreakpointId.md:
       case MaterialBreakpointId.lg:
         return 12;
@@ -60,7 +59,8 @@ class MaterialLayout extends Layout<MaterialBreakpointId, MaterialBreakpoint> {
       case null:
       case MaterialBreakpointId.xs:
         return 16;
-      case MaterialBreakpointId.sm:
+      case MaterialBreakpointId.sm8:
+      case MaterialBreakpointId.sm12:
       case MaterialBreakpointId.md:
       case MaterialBreakpointId.lg:
         return 24;
@@ -72,13 +72,11 @@ class MaterialLayout extends Layout<MaterialBreakpointId, MaterialBreakpoint> {
       case null:
       case MaterialBreakpointId.xs:
         return 16;
-      case MaterialBreakpointId.sm:
+      case MaterialBreakpointId.sm8:
+        return 32;
+      case MaterialBreakpointId.sm12:
         const maxBodyWidth = 840.0;
-        const fixedMargin = 32.0;
-        const maxFixedMarginWidth = maxBodyWidth + 2 * fixedMargin;
-        return containerWidth <= maxFixedMarginWidth
-            ? fixedMargin
-            : scalingLeftMargin(containerWidth, maxBodyWidth);
+        return scalingLeftMargin(containerWidth, maxBodyWidth);
       case MaterialBreakpointId.md:
         return 200;
       case MaterialBreakpointId.lg:

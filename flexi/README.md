@@ -153,6 +153,16 @@ In this example, each breakpoint uses a recommended layout from material guideli
 
 # Usage
 
+# Best Practices
+
+**Avoid changing number of columns in the same breakpoint**
+
+* Reason: you will need to manage complex logic for this breakpoint everywhere.
+* Solution: split this kind of breakpoint into multiple breakpoints.
+* Example: split material design breakpoint `sm` into 2 breakpoints:
+  * `sm8` for 8 columns layout
+  * `sm12` for 12 columns layout
+
 # FAQs
 
 [e0]: https://github.com/zenonine/flexi/tree/master/flexi/example/lib

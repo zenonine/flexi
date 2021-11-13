@@ -179,7 +179,7 @@ void main() {
       materialLayout,
       width: 600,
       breakpoint: MaterialBreakpoint(
-        id: MaterialBreakpointId.sm,
+        id: MaterialBreakpointId.sm8,
         minWidth: 600,
       ),
       format: LayoutFormat(
@@ -196,7 +196,7 @@ void main() {
       materialLayout,
       width: 800,
       breakpoint: MaterialBreakpoint(
-        id: MaterialBreakpointId.sm,
+        id: MaterialBreakpointId.sm8,
         minWidth: 600,
       ),
       format: LayoutFormat(
@@ -213,7 +213,7 @@ void main() {
       materialLayout,
       width: 904,
       breakpoint: MaterialBreakpoint(
-        id: MaterialBreakpointId.sm,
+        id: MaterialBreakpointId.sm8,
         minWidth: 600,
       ),
       format: LayoutFormat(
@@ -230,8 +230,8 @@ void main() {
       materialLayout,
       width: 905,
       breakpoint: MaterialBreakpoint(
-        id: MaterialBreakpointId.sm,
-        minWidth: 600,
+        id: MaterialBreakpointId.sm12,
+        minWidth: 905,
       ),
       format: LayoutFormat(
         columns: 12,
@@ -247,8 +247,8 @@ void main() {
       materialLayout,
       width: 1000,
       breakpoint: MaterialBreakpoint(
-        id: MaterialBreakpointId.sm,
-        minWidth: 600,
+        id: MaterialBreakpointId.sm12,
+        minWidth: 905,
       ),
       format: LayoutFormat(
         columns: 12,
@@ -264,8 +264,8 @@ void main() {
       materialLayout,
       width: 1239,
       breakpoint: MaterialBreakpoint(
-        id: MaterialBreakpointId.sm,
-        minWidth: 600,
+        id: MaterialBreakpointId.sm12,
+        minWidth: 905,
       ),
       format: LayoutFormat(
         columns: 12,

@@ -3,7 +3,7 @@ description: >-
   Beside predefined breakpoint systems, such as Material,
   you can create your fixed and responsive layout for different grid types:
   Manuscript, Columns, Modular and Baseline.
-version: 0.3.2
+version: 0.4.0
 homepage: https://github.com/zenonine/flexi
 documentation: https://github.com/zenonine/flexi/tree/master/flexi
 issue_tracker: https://github.com/zenonine/flexi/issues

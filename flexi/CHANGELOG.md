@@ -1,3 +1,10 @@
+## 0.4.0
+
+Breaking change: split material design breakpoint `sm` into 2 breakpoints:
+
+* `sm8` for 8 columns layout
+* `sm12` for 12 columns layout
+
 ## 0.3.2
 
 Fix #33: Wrong margins for flex container
