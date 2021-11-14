@@ -27,9 +27,10 @@ export 'src/index.dart'
         CondensedCarbonLayout,
         FlexiContext,
         Flexi,
+        MatFlexWidget,
+        MatFlexValue,
         FlexContainer,
         FlexContainerBuilder,
         FlexWidget,
         FlexValue,
-        FlexValueBuilder,
-        FlexWidgetBuilder;
+        FlexValueBuilder;

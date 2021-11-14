@@ -5,8 +5,8 @@ import '../index.dart';
 class FlexWidget<BreakpointId extends Enum> extends StatelessWidget {
   FlexWidget({
     Key? key,
-    WidgetBuilder? startWidget,
-    Map<BreakpointId, WidgetBuilder>? flexWidgets,
+    FlexValueBuilder<Widget>? startWidget,
+    Map<BreakpointId, FlexValueBuilder<Widget>>? flexWidgets,
     Flexi? flexiContext,
   }) : this._value(
           key: key,
@@ -19,17 +19,18 @@ class FlexWidget<BreakpointId extends Enum> extends StatelessWidget {
 
   const FlexWidget._value({
     Key? key,
-    required FlexValue<BreakpointId, WidgetBuilder> flexValue,
+    required FlexValue<BreakpointId, Widget> flexValue,
     this.flexiContext,
   })  : _flexValue = flexValue,
         super(key: key);
 
-  final FlexValue<BreakpointId, WidgetBuilder> _flexValue;
+  final FlexValue<BreakpointId, Widget> _flexValue;
   final Flexi? flexiContext;
 
   @override
   Widget build(BuildContext context) {
-    final widgetBuilder = _flexValue.get(flexiContext?.context ?? context);
+    final widgetBuilder =
+        _flexValue.getBuilder(flexiContext?.context ?? context);
     return widgetBuilder(context);
   }
 }

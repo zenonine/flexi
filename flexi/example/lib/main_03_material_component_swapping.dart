@@ -1,4 +1,5 @@
 import 'package:flexi/flexi.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,28 +9,24 @@ void main() {
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
-  FlexWidget<MaterialBreakpointId> _buildRailOrMenu() => FlexWidget(
-        startWidget: (_) => const AppRail(),
-        flexWidgets: {
-          MaterialBreakpointId.lg: (_) => const SizedBox(
-                width: 256,
-                child: AppMenu(),
-              ),
-        },
+  Widget _buildRailOrMenu() => MatFlexWidget(
+        xs: (_) => const AppRail(),
+        lg: (_) => const SizedBox(
+          width: 256,
+          child: AppMenu(),
+        ),
       );
 
-  FlexWidget<MaterialBreakpointId> _buildSidebar() => FlexWidget(
-        flexWidgets: {
-          MaterialBreakpointId.md: (_) => Row(
-                children: const [
-                  VerticalDivider(thickness: 1, width: 1),
-                  SizedBox(
-                    width: 256,
-                    child: AppSidebar(),
-                  ),
-                ],
-              )
-        },
+  Widget _buildSidebar() => MatFlexWidget(
+        md: (_) => Row(
+          children: const [
+            VerticalDivider(thickness: 1, width: 1),
+            SizedBox(
+              width: 256,
+              child: AppSidebar(),
+            ),
+          ],
+        ),
       );
 
   @override
@@ -42,8 +39,8 @@ class App extends StatelessWidget {
       title: 'Flexi Example - Component Swapping',
       home: FlexContainer(
         layout: const MaterialLayout(),
-        child: FlexWidget(
-          startWidget: (_) => Scaffold(
+        child: MatFlexWidget(
+          xs: (_) => Scaffold(
             drawer: const Drawer(child: AppMenu()),
             appBar: AppBar(
               title: const Text('AppBar'),
@@ -62,18 +59,16 @@ class App extends StatelessWidget {
               ],
             ),
           ),
-          flexWidgets: {
-            MaterialBreakpointId.sm8: (_) => Scaffold(
-                  body: Row(
-                    children: [
-                      _buildRailOrMenu(),
-                      const VerticalDivider(thickness: 1, width: 1),
-                      const Expanded(child: AppBody()),
-                      _buildSidebar(),
-                    ],
-                  ),
-                ),
-          },
+          sm8: (_) => Scaffold(
+            body: Row(
+              children: [
+                _buildRailOrMenu(),
+                const VerticalDivider(thickness: 1, width: 1),
+                const Expanded(child: AppBody()),
+                _buildSidebar(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -136,19 +131,43 @@ class AppBody extends StatelessWidget {
   const AppBody({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => FlexConfig(
-        showOverlay: true,
-        child: FlexContainerBuilder(
-          layout: const MaterialLayout(),
-          builder: (context) => Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Full screen: ${context.flexi.root.containerSize}'),
-                Text('Content area: ${context.flexi.containerSize}'),
-              ],
+  Widget build(BuildContext context) {
+    return FlexConfig(
+      showOverlay: kDebugMode,
+      child: FlexContainerBuilder(
+        fullSize: false,
+        layout: const MaterialLayout(),
+        builder: (context) {
+          return SingleChildScrollView(
+            child: Wrap(
+              spacing: context.flexi.regionSpaceWidth(
+                columns: MatFlexValue(
+                  xs: (_) => 0,
+                  sm8: (_) => 2,
+                ).get(context),
+              ),
+              runSpacing: context.flexi.gutter,
+              children: List.generate(
+                4,
+                (index) => SizedBox(
+                  width: context.flexi.regionWidth(
+                    columns: MatFlexValue(
+                      xs: (_) => 4,
+                      sm8: (_) => 3,
+                      sm12: (_) => 5,
+                    ).get(context),
+                  ),
+                  height: 200,
+                  child: Container(
+                    color: Colors.blue,
+                    child: Text('$index'),
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      );
+          );
+        },
+      ),
+    );
+  }
 }

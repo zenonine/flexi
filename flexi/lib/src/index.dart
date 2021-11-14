@@ -15,3 +15,4 @@ export 'widgets/container/flex_container.dart';
 export 'widgets/container/flex_container_builder.dart';
 export 'widgets/container/inherited_container.dart';
 export 'widgets/flex_widget.dart';
+export 'wrappers/material_wrappers.dart';

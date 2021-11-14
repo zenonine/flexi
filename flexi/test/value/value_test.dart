@@ -7,26 +7,20 @@ import '../index.dart';
 // => testing is integrated in the context of real widgets.
 void main() {
   final flexValue1 = FlexValue<TestBreakpointId, String>(
-    'xs',
+    (_) => 'xs',
     {
-      TestBreakpointId.sm: 'sm',
-      TestBreakpointId.md: 'md',
-      TestBreakpointId.lg: 'lg',
+      TestBreakpointId.sm: (_) => 'sm',
+      TestBreakpointId.md: (_) => 'md',
+      TestBreakpointId.lg: (_) => 'lg',
     },
   );
 
   final flexValue2 = FlexValue<TestBreakpointId, String>(
-    'xs/sm',
+    (_) => 'xs/sm',
     {
-      TestBreakpointId.md: 'md/lg',
+      TestBreakpointId.md: (_) => 'md/lg',
     },
   );
-
-  final flexValueBuilder =
-      FlexValue<TestBreakpointId, String>.builder((context) {
-    final breakpoint = context.flexi.maybeBreakpoint;
-    return breakpoint == null ? 'xs' : breakpoint.id.toString();
-  });
 
   final expectedFlexValues = [
     // flexValue1
@@ -112,48 +106,6 @@ void main() {
       containerWidth: 400,
       expectedText: 'md/lg',
     ),
-
-    // flexValueBuilder
-    _ExpectedFlexValue(
-      flexValue: flexValueBuilder,
-      containerWidth: 0,
-      expectedText: 'xs',
-    ),
-    _ExpectedFlexValue(
-      flexValue: flexValueBuilder,
-      containerWidth: 99,
-      expectedText: 'xs',
-    ),
-    _ExpectedFlexValue(
-      flexValue: flexValueBuilder,
-      containerWidth: 100,
-      expectedText: TestBreakpointId.sm.toString(),
-    ),
-    _ExpectedFlexValue(
-      flexValue: flexValueBuilder,
-      containerWidth: 199,
-      expectedText: TestBreakpointId.sm.toString(),
-    ),
-    _ExpectedFlexValue(
-      flexValue: flexValueBuilder,
-      containerWidth: 200,
-      expectedText: TestBreakpointId.md.toString(),
-    ),
-    _ExpectedFlexValue(
-      flexValue: flexValueBuilder,
-      containerWidth: 299,
-      expectedText: TestBreakpointId.md.toString(),
-    ),
-    _ExpectedFlexValue(
-      flexValue: flexValueBuilder,
-      containerWidth: 300,
-      expectedText: TestBreakpointId.lg.toString(),
-    ),
-    _ExpectedFlexValue(
-      flexValue: flexValueBuilder,
-      containerWidth: 400,
-      expectedText: TestBreakpointId.lg.toString(),
-    ),
   ];
 
   for (final expectedFlexValue in expectedFlexValues) {
@@ -194,8 +146,7 @@ class _TestApp extends StatelessWidget {
         home: FlexContainer(
           layout: const TestLayout(),
           child: Builder(
-            builder: (context) =>
-                flexTitle.build(builder: (context, value) => Text(value)),
+            builder: (ctx) => Text(flexTitle.get(ctx)),
           ),
         ),
       );
